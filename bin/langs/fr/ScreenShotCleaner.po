@@ -1,0 +1,116 @@
+# Message catalog file template for ScreenShotCleaner
+# Copyright (C) 2014 Xaviou
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ScreenShotCleaner\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-22 22:23+0100\n"
+"PO-Revision-Date: 2014-01-22 22:24+0100\n"
+"Last-Translator: Xaviou <x.psoud@gmail.com>\n"
+"Language-Team: Xaviou <x.psoud@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\\..\\..\\\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-KeywordsList: _;wxPLURAL\n"
+"X-Poedit-SearchPath-0: sources\n"
+
+#: sources/dlgabout.cpp:17
+#, c-format
+msgid "About %s"
+msgstr "À propos de %s"
+
+#: sources/dlgabout.cpp:43
+#, c-format
+msgid "Made with Code::Blocks && %s - %d bits"
+msgstr "Créé avec Code::Blocks && %s - %d bits"
+
+#: sources/dlgabout.cpp:52
+msgid "Close"
+msgstr "Fermer"
+
+#: sources/dlgoptions.cpp:9
+#: sources/mainframe.cpp:59
+msgid "Preferences"
+msgstr "Préférences"
+
+#: sources/dlgoptions.cpp:42
+msgid "Language :"
+msgstr "Langue :"
+
+#: sources/dlgoptions.cpp:43
+msgid "Select language (restart needed) :"
+msgstr "Sélectionnez la langue (redémarrage nécessaire) :"
+
+#: sources/dlgoptions.cpp:62
+msgid "General"
+msgstr "Général"
+
+#: sources/dlgoptions.cpp:69
+msgid "OK"
+msgstr "OK"
+
+#: sources/dlgoptions.cpp:71
+msgid "Cancel"
+msgstr "Annuler"
+
+#: sources/dlgoptions.cpp:73
+msgid "Apply"
+msgstr "Appliquer"
+
+#: sources/mainframe.cpp:53
+msgid "Exit"
+msgstr "Quitter"
+
+#: sources/mainframe.cpp:53
+msgid "Quit this application"
+msgstr "Quitter cette application"
+
+#: sources/mainframe.cpp:56
+msgid "&File"
+msgstr "&Fichier"
+
+#: sources/mainframe.cpp:59
+msgid "Change the application settings"
+msgstr "Modifier les réglages de l'application"
+
+#: sources/mainframe.cpp:62
+msgid "&Edit"
+msgstr "&Édition"
+
+#: sources/mainframe.cpp:65
+msgid "About"
+msgstr "À propos de"
+
+#: sources/mainframe.cpp:65
+msgid "Show informations about this application"
+msgstr "Afficher les informations concernant l'application"
+
+#: sources/mainframe.cpp:68
+msgid "&Help"
+msgstr "&Aide"
+
+#: sources/mainframe.cpp:130
+msgid ""
+"The interface language has been changed.\n"
+"You must restart the application for this change to take effect."
+msgstr ""
+"La langue de l'interface a été modifiée.\n"
+"Vous devez redémarrer l'application pour que ce changement prenne effet."
+
+#: sources/mainframe.cpp:130
+msgid "Restart needed"
+msgstr "Redémarrage nécessaire"
+
+#: sources/settingsmanager.cpp:237
+msgid "The selected language isn't supported yet !"
+msgstr "La langue sélectionnée n'est pas encore supportée !"
+
+#: sources/settingsmanager.cpp:237
+msgid "Error"
+msgstr "Erreur"
+
