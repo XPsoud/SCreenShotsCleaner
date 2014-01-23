@@ -17,6 +17,8 @@ MainFrame::MainFrame(wxWindow *parent, const wxString& title) :
     CreateControls();
     ConnectControls();
 
+    UpdateControlsState();
+
     SetMinSize(MAINFRAME_MIN_SIZE);
 
     wxPoint pt=m_options.GetLastSavedPos();
@@ -42,6 +44,7 @@ MainFrame::~MainFrame()
 
 void MainFrame::CreateControls()
 {
+    const int iSpaces = 5;
     // Status Bar
     CreateStatusBar();
     // Menu Bar
@@ -50,6 +53,12 @@ void MainFrame::CreateControls()
     wxMenuBar* mbar = new wxMenuBar();
 
     menu = new wxMenu(_T(""));
+        item=new wxMenuItem(menu, wxID_OPEN, _("Open"), _("Select the screenshot file to clean"));
+        item->SetBitmap(wxGet_file_open_png_Bitmap());
+        menu->Append(item);
+
+        menu->AppendSeparator();
+
         item=new wxMenuItem(menu, wxID_EXIT, _("Exit"), _("Quit this application"));
         item->SetBitmap(wxGet_app_exit_png_Bitmap());
         menu->Append(item);
@@ -68,6 +77,35 @@ void MainFrame::CreateControls()
     mbar->Append(menu, _("&Help"));
 
     SetMenuBar(mbar);
+
+    // Controls
+    wxPanel *pnl=new wxPanel(this, -1);
+    wxStaticText *label;
+    wxBoxSizer *szrMain=new wxBoxSizer(wxVERTICAL), *lnszr;
+
+        label=new wxStaticText(pnl, -1, _("Source file to clean:"));
+        szrMain->Add(label, 0, wxLEFT|wxRIGHT|wxTOP, iSpaces);
+        szrMain->AddSpacer(1);
+
+        lnszr=new wxBoxSizer(wxHORIZONTAL);
+            m_txtSrcFile=new wxTextCtrl(pnl, -1, _T(""), wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+            lnszr->Add(m_txtSrcFile, 1, wxALL|wxALIGN_CENTER_VERTICAL, 0);
+            m_btnBrwseSrc=new wxButton(pnl, -1, _("..."), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
+            lnszr->Add(m_btnBrwseSrc, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, iSpaces);
+        szrMain->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, iSpaces);
+
+        lnszr=new wxBoxSizer(wxHORIZONTAL);
+            m_chkIncrease=new wxCheckBox(pnl, -1, _("Increase the image size by"));
+            lnszr->Add(m_chkIncrease, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0);
+            m_spnIncrease=new wxSpinCtrl(pnl, -1, _T("5"), wxDefaultPosition, wxSize(50, -1), wxSP_ARROW_KEYS, 1, 100, 5);
+            lnszr->Add(m_spnIncrease, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, iSpaces);
+            label=new wxStaticText(pnl, -1, _("pixels per side"));
+            lnszr->Add(label, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, iSpaces);
+        szrMain->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, iSpaces);
+    pnl->SetSizer(szrMain);
+
+    // Default values
+    m_chkIncrease->SetValue(false);
 }
 
 void MainFrame::ConnectControls()
@@ -79,6 +117,13 @@ void MainFrame::ConnectControls()
     Connect(wxID_EXIT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuExitClicked));
     Connect(wxID_PREFERENCES, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuOptionsClicked));
     Connect(wxID_ABOUT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuAboutClicked));
+
+    m_chkIncrease->Connect(wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnChkIncreaseClicked), NULL, this);
+}
+
+void MainFrame::UpdateControlsState()
+{
+    m_spnIncrease->Enable(m_chkIncrease->IsChecked());
 }
 
 void MainFrame::OnClose(wxCloseEvent& event)
@@ -129,4 +174,9 @@ void MainFrame::OnMenuOptionsClicked(wxCommandEvent& event)
     {
         wxMessageBox(_("The interface language has been changed.\nYou must restart the application for this change to take effect."), _("Restart needed"), wxICON_INFORMATION|wxOK|wxCENTER);
     }
+}
+
+void MainFrame::OnChkIncreaseClicked(wxCommandEvent& event)
+{
+    UpdateControlsState();
 }
