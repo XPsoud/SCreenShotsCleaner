@@ -5,6 +5,8 @@
 #include "menu_icons.h"
 #include "settingsmanager.h"
 
+#include <wx/filename.h>
+
 MainFrame::MainFrame(wxWindow *parent, const wxString& title) :
     wxFrame(parent, wxID_ANY, title), m_options(SettingsManager::Get())
 {
@@ -114,10 +116,12 @@ void MainFrame::ConnectControls()
     Connect(wxEVT_SIZE, wxSizeEventHandler(MainFrame::OnSize));
     Connect(wxEVT_MOVE, wxMoveEventHandler(MainFrame::OnMove));
 
+    Connect(wxID_OPEN, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuOpenClicked));
     Connect(wxID_EXIT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuExitClicked));
     Connect(wxID_PREFERENCES, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuOptionsClicked));
     Connect(wxID_ABOUT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuAboutClicked));
 
+    m_btnBrwseSrc->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(MainFrame::OnMenuOpenClicked), NULL, this);
     m_chkIncrease->Connect(wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnChkIncreaseClicked), NULL, this);
 }
 
@@ -154,15 +158,25 @@ void MainFrame::OnMove(wxMoveEvent& event)
     event.Skip();
 }
 
+void MainFrame::OnMenuOpenClicked(wxCommandEvent &event)
+{
+    wxString sMsg=_("Select an image file");
+    wxString sWlcrd=_("Images files|*.png;*.jpg;*.bmp|All files|*.*");
+    wxString sName, sPath;
+    if (!m_txtSrcFile->IsEmpty())
+    {
+        sName=wxFileNameFromPath(m_txtSrcFile->GetValue());
+        sPath=wxPathOnly(m_txtSrcFile->GetValue());
+    }
+    wxFileDialog fdlg(this, sMsg, sPath, sName, sWlcrd, wxFD_OPEN|wxFD_FILE_MUST_EXIST);
+    if (fdlg.ShowModal()!=wxID_OK) return;
+
+    m_txtSrcFile->ChangeValue(fdlg.GetPath());
+}
+
 void MainFrame::OnMenuExitClicked(wxCommandEvent& event)
 {
     Destroy();
-}
-
-void MainFrame::OnMenuAboutClicked(wxCommandEvent& event)
-{
-    DlgAbout dlg(this);
-    dlg.ShowModal();
 }
 
 void MainFrame::OnMenuOptionsClicked(wxCommandEvent& event)
@@ -174,6 +188,12 @@ void MainFrame::OnMenuOptionsClicked(wxCommandEvent& event)
     {
         wxMessageBox(_("The interface language has been changed.\nYou must restart the application for this change to take effect."), _("Restart needed"), wxICON_INFORMATION|wxOK|wxCENTER);
     }
+}
+
+void MainFrame::OnMenuAboutClicked(wxCommandEvent& event)
+{
+    DlgAbout dlg(this);
+    dlg.ShowModal();
 }
 
 void MainFrame::OnChkIncreaseClicked(wxCommandEvent& event)

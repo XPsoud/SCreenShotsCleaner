@@ -21,9 +21,10 @@ class MainFrame: public wxFrame
         void OnClose(wxCloseEvent& event);
         void OnSize(wxSizeEvent& event);
         void OnMove(wxMoveEvent &event);
-        void OnMenuAboutClicked(wxCommandEvent &event);
-        void OnMenuOptionsClicked(wxCommandEvent &event);
+        void OnMenuOpenClicked(wxCommandEvent &event);
         void OnMenuExitClicked(wxCommandEvent &event);
+        void OnMenuOptionsClicked(wxCommandEvent &event);
+        void OnMenuAboutClicked(wxCommandEvent &event);
         void OnChkIncreaseClicked(wxCommandEvent &event);
         // Controls vars
         wxTextCtrl *m_txtSrcFile;
