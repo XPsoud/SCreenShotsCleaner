@@ -23,4 +23,9 @@ extern unsigned char help_about_png[];
 
 wxBitmap wxGet_help_about_png_Bitmap();
 
+#define picture_save_png_Length 825
+extern unsigned char picture_save_png[];
+
+wxBitmap wxGet_picture_save_png_Bitmap();
+
 #endif //MENU_ICONS_H_INCLUDED

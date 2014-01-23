@@ -22,13 +22,15 @@ class MainFrame: public wxFrame
         void OnSize(wxSizeEvent& event);
         void OnMove(wxMoveEvent &event);
         void OnMenuOpenClicked(wxCommandEvent &event);
+        void OnMenuSaveClicked(wxCommandEvent &event);
         void OnMenuExitClicked(wxCommandEvent &event);
         void OnMenuOptionsClicked(wxCommandEvent &event);
         void OnMenuAboutClicked(wxCommandEvent &event);
         void OnChkIncreaseClicked(wxCommandEvent &event);
+        void OnUpdateUI_MenuSave(wxUpdateUIEvent &event);
         // Controls vars
         wxTextCtrl *m_txtSrcFile;
-        wxButton *m_btnBrwseSrc;
+        wxButton *m_btnBrwseSrc, *m_btnSave;
         wxCheckBox *m_chkIncrease;
         wxSpinCtrl *m_spnIncrease;
         // Other vars

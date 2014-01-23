@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ScreenShotCleaner\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-23 09:03+0100\n"
-"PO-Revision-Date: 2014-01-23 09:05+0100\n"
+"POT-Creation-Date: 2014-01-23 10:04+0100\n"
+"PO-Revision-Date: 2014-01-23 10:05+0100\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgid "Close"
 msgstr "Fermer"
 
 #: sources/dlgoptions.cpp:9
-#: sources/mainframe.cpp:70
+#: sources/mainframe.cpp:76
 msgid "Preferences"
 msgstr "Préférences"
 
@@ -71,62 +71,71 @@ msgid "Select the screenshot file to clean"
 msgstr "Sélectionner le fichier de capture d'écran à nettoyer :"
 
 #: sources/mainframe.cpp:64
+msgid "Save"
+msgstr "Enregistrer"
+
+#: sources/mainframe.cpp:64
+#: sources/mainframe.cpp:116
+msgid "Save the cleaned image"
+msgstr "Enregistrer l'image nettoyée"
+
+#: sources/mainframe.cpp:70
 msgid "Exit"
 msgstr "Quitter"
 
-#: sources/mainframe.cpp:64
+#: sources/mainframe.cpp:70
 msgid "Quit this application"
 msgstr "Quitter cette application"
 
-#: sources/mainframe.cpp:67
+#: sources/mainframe.cpp:73
 msgid "&File"
 msgstr "&Fichier"
 
-#: sources/mainframe.cpp:70
+#: sources/mainframe.cpp:76
 msgid "Change the application settings"
 msgstr "Modifier les réglages de l'application"
 
-#: sources/mainframe.cpp:73
+#: sources/mainframe.cpp:79
 msgid "&Edit"
 msgstr "&Édition"
 
-#: sources/mainframe.cpp:76
+#: sources/mainframe.cpp:82
 msgid "About"
 msgstr "À propos de"
 
-#: sources/mainframe.cpp:76
+#: sources/mainframe.cpp:82
 msgid "Show informations about this application"
 msgstr "Afficher les informations concernant l'application"
 
-#: sources/mainframe.cpp:79
+#: sources/mainframe.cpp:85
 msgid "&Help"
 msgstr "&Aide"
 
-#: sources/mainframe.cpp:88
+#: sources/mainframe.cpp:94
 msgid "Source file to clean:"
 msgstr "Fichier source à nettoyer :"
 
-#: sources/mainframe.cpp:95
+#: sources/mainframe.cpp:101
 msgid "..."
 msgstr "..."
 
-#: sources/mainframe.cpp:100
+#: sources/mainframe.cpp:106
 msgid "Increase the image size by"
 msgstr "Augmenter la taille de l'image de"
 
-#: sources/mainframe.cpp:104
+#: sources/mainframe.cpp:110
 msgid "pixels per side"
 msgstr "pixels par côté"
 
-#: sources/mainframe.cpp:163
+#: sources/mainframe.cpp:177
 msgid "Select an image file"
 msgstr "Sélectionnez un fichier image"
 
-#: sources/mainframe.cpp:164
+#: sources/mainframe.cpp:178
 msgid "Images files|*.png;*.jpg;*.bmp|All files|*.*"
 msgstr "Fichiers images|*.png;*.jpg;*.bmp|Tous les fichiers|*.*"
 
-#: sources/mainframe.cpp:189
+#: sources/mainframe.cpp:203
 msgid ""
 "The interface language has been changed.\n"
 "You must restart the application for this change to take effect."
@@ -134,7 +143,7 @@ msgstr ""
 "La langue de l'interface a été modifiée.\n"
 "Vous devez redémarrer l'application pour que ce changement prenne effet."
 
-#: sources/mainframe.cpp:189
+#: sources/mainframe.cpp:203
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
 

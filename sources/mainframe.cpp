@@ -61,6 +61,12 @@ void MainFrame::CreateControls()
 
         menu->AppendSeparator();
 
+        item=new wxMenuItem(menu, wxID_SAVE, _("Save"), _("Save the cleaned image"));
+        item->SetBitmap(wxGet_picture_save_png_Bitmap());
+        menu->Append(item);
+
+        menu->AppendSeparator();
+
         item=new wxMenuItem(menu, wxID_EXIT, _("Exit"), _("Quit this application"));
         item->SetBitmap(wxGet_app_exit_png_Bitmap());
         menu->Append(item);
@@ -104,6 +110,12 @@ void MainFrame::CreateControls()
             label=new wxStaticText(pnl, -1, _("pixels per side"));
             lnszr->Add(label, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, iSpaces);
         szrMain->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, iSpaces);
+
+        lnszr=new wxBoxSizer(wxHORIZONTAL);
+            lnszr->AddStretchSpacer(1);
+            m_btnSave=new wxButton(pnl, wxID_SAVE, _("Save the cleaned image"));
+            lnszr->Add(m_btnSave, 0, wxALL, 0);
+        szrMain->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, iSpaces);
     pnl->SetSizer(szrMain);
 
     // Default values
@@ -123,6 +135,8 @@ void MainFrame::ConnectControls()
 
     m_btnBrwseSrc->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(MainFrame::OnMenuOpenClicked), NULL, this);
     m_chkIncrease->Connect(wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnChkIncreaseClicked), NULL, this);
+
+    Connect(wxID_SAVE, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(MainFrame::OnUpdateUI_MenuSave));
 }
 
 void MainFrame::UpdateControlsState()
@@ -199,4 +213,24 @@ void MainFrame::OnMenuAboutClicked(wxCommandEvent& event)
 void MainFrame::OnChkIncreaseClicked(wxCommandEvent& event)
 {
     UpdateControlsState();
+}
+
+void MainFrame::OnUpdateUI_MenuSave(wxUpdateUIEvent& event)
+{
+    bool bEnable=true;
+    if (m_txtSrcFile->IsEmpty())
+    {
+        bEnable=false;
+    }
+    else
+    {
+        if (!wxFileExists(m_txtSrcFile->GetValue()))
+            bEnable=false;
+    }
+    event.Enable(bEnable);
+}
+
+void MainFrame::OnMenuSaveClicked(wxCommandEvent& event)
+{
+    //
 }
