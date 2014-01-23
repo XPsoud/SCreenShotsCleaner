@@ -17,7 +17,6 @@ class MainFrame: public wxFrame
         void CreateControls();
         void ConnectControls();
         void UpdateControlsState();
-        wxBitmapType GetBmpTypeFromFilename(const wxString& filename);
         // Events Handlers
         void OnClose(wxCloseEvent& event);
         void OnSize(wxSizeEvent& event);

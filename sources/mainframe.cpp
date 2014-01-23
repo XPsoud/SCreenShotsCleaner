@@ -5,6 +5,7 @@
 #include "menu_icons.h"
 #include "settingsmanager.h"
 
+#include <wx/rawbmp.h>
 #include <wx/filename.h>
 
 MainFrame::MainFrame(wxWindow *parent, const wxString& title) :
@@ -146,21 +147,6 @@ void MainFrame::UpdateControlsState()
     m_spnIncrease->Enable(m_chkIncrease->IsChecked());
 }
 
-wxBitmapType MainFrame::GetBmpTypeFromFilename(const wxString& filename)
-{
-    wxFileName fname(filename);
-
-    if (!fname.IsOk()) return wxBITMAP_TYPE_INVALID;
-
-    wxString sExt=fname.GetExt().Lower();
-
-    if (sExt==_T("png")) return wxBITMAP_TYPE_PNG;
-    if (sExt==_T("jpg")) return wxBITMAP_TYPE_JPEG;
-    if (sExt==_T("jpeg")) return wxBITMAP_TYPE_JPEG;
-
-    return wxBITMAP_TYPE_INVALID;
-}
-
 void MainFrame::OnClose(wxCloseEvent& event)
 {
     event.Skip();
@@ -249,7 +235,6 @@ void MainFrame::OnUpdateUI_MenuSave(wxUpdateUIEvent& event)
 
 void MainFrame::OnMenuSaveClicked(wxCommandEvent& event)
 {
-    wxBitmap bmpSrc;
     wxFileName SrcFName(m_txtSrcFile->GetValue());
     // First, check the file name and path
     if (!SrcFName.IsOk() || !SrcFName.FileExists())
@@ -258,18 +243,61 @@ void MainFrame::OnMenuSaveClicked(wxCommandEvent& event)
         m_txtSrcFile->SetFocus();
         return;
     }
-    int iType=GetBmpTypeFromFilename(SrcFName.GetFullPath());
-    if (iType==wxBITMAP_TYPE_INVALID)
+    if (!wxImage::CanRead(SrcFName.GetFullPath()))
     {
-        wxMessageBox(_("Unsupported image type !"), _("Error"), wxICON_EXCLAMATION|wxOK|wxCENTER);
+        wxMessageBox(_("Unsupported image format !"), _("Error"), wxICON_EXCLAMATION|wxOK|wxCENTER);
         return;
     }
+    wxImage imgSrc;
     // Try to load the corresponding image
-    if (!bmpSrc.LoadFile(SrcFName.GetFullPath()), iType)
+    if (!imgSrc.LoadFile(SrcFName.GetFullPath(), wxBITMAP_TYPE_ANY))
     {
         wxMessageBox(_("Unable to load the image file !"), _("Error"), wxICON_EXCLAMATION|wxOK|wxCENTER);
         return;
     }
+    wxBitmapType iSrcType=imgSrc.GetType();
 
+    if (!imgSrc.HasAlpha()) imgSrc.InitAlpha();
+
+    // Clear pixels of rounded angles
+    wxSize szImg=imgSrc.GetSize();
+    int iWdth=szImg.GetWidth()-1, iHght=szImg.GetHeight()-1;
+    int iClear[5]={5,3,2,1,1};
+    for (int y=0; y<5; y++)
+    {
+        for (int x=0; x<iClear[y]; x++)
+        {
+            imgSrc.SetAlpha(x, y, 0); imgSrc.SetRGB(x, y, 255, 255, 255);
+            imgSrc.SetAlpha(iWdth-x, y, 0); imgSrc.SetRGB(iWdth-x, y, 255, 255, 255);
+            imgSrc.SetAlpha(x, iHght-y, 0); imgSrc.SetRGB(x, iHght-y, 255, 255, 255);
+            imgSrc.SetAlpha(iWdth-x, iHght-y, 0); imgSrc.SetRGB(iWdth-x, iHght-y, 255, 255, 255);
+        }
+    }
+    int iXFrom[4]={6, 4, 2, 1}, iXTo[4]={5, 3, 2, 1};
+    int iYFrom[4]={1, 2, 4, 6}, iYTo[4]={1, 2, 3, 5};
+    int xT, yT, xF, yF;
+    for (int i=0; i<4; i++)
+    {
+        xF=iXFrom[i]; yF=iYFrom[i]; xT=iXTo[i]; yT=iYTo[i];
+        imgSrc.SetRGB(xT, yT, imgSrc.GetRed(xF, yF), imgSrc.GetGreen(xF, yF), imgSrc.GetBlue(xF, yF));
+        xF=iWdth-iXFrom[i]; xT=iWdth-iXTo[i];
+        imgSrc.SetRGB(xT, yT, imgSrc.GetRed(xF, yF), imgSrc.GetGreen(xF, yF), imgSrc.GetBlue(xF, yF));
+        yF=iHght-iYFrom[i]; yT=iHght-iYTo[i];
+        imgSrc.SetRGB(xT, yT, imgSrc.GetRed(xF, yF), imgSrc.GetGreen(xF, yF), imgSrc.GetBlue(xF, yF));
+        xF=iXFrom[i]; xT=iXTo[i];
+        imgSrc.SetRGB(xT, yT, imgSrc.GetRed(xF, yF), imgSrc.GetGreen(xF, yF), imgSrc.GetBlue(xF, yF));
+    }
+
+    if (m_chkIncrease->IsChecked())
+    {
+        int iInc=m_spnIncrease->GetValue();
+        szImg.IncBy(iInc*2);
+        // Set mask color to white (for images formats that don't support alpha)
+        imgSrc.SetMaskColour(255, 255, 255);
+        imgSrc.Resize(szImg, wxPoint(iInc, iInc));
+    }
+
+    SrcFName.SetName(SrcFName.GetName()+_T("_Cleaned"));
+    imgSrc.SaveFile(SrcFName.GetFullPath(), iSrcType);
     wxMessageBox(_T("Done !"));
 }
