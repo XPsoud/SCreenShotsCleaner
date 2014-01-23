@@ -16,24 +16,29 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DwxDEBUG_LEVEL=0" />
-					<Add directory="$(#wx30)/lib/gcc_dll32/mswu" />
+					<Add directory="$(#wx30)/lib/gcc_lib32/mswu" />
 					<Add directory="$(#wx30)/include" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="$(#wx30)/lib/gcc_dll32/mswu" />
+					<Add directory="$(#wx30)/lib/gcc_lib32/mswu" />
 					<Add directory="$(#wx30)/include" />
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
 					<Add library="libwxbase30u_xml.a" />
-					<Add library="libwxmsw30u_adv.a" />
 					<Add library="libwxmsw30u_core.a" />
-					<Add library="libwxbase30u_net.a" />
 					<Add library="libwxbase30u.a" />
-					<Add library="libwxpng.a" />
-					<Add library="libwxzlib.a" />
 					<Add library="libwxexpat.a" />
-					<Add directory="$(#wx30)/lib/gcc_dll32" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libole32.a" />
+					<Add library="libuuid.a" />
+					<Add directory="$(#wx30)/lib/gcc_lib32" />
 				</Linker>
 			</Target>
 			<Target title="Debug32">
@@ -46,6 +51,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DSHOW_DEBUG_MSG" />
+					<Add option="-DWXUSINGDLL" />
 					<Add directory="$(#wx30)/lib/gcc_dll32/mswud" />
 					<Add directory="$(#wx30)/include" />
 				</Compiler>
@@ -55,9 +61,7 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add library="libwxbase30ud_xml.a" />
-					<Add library="libwxmsw30ud_adv.a" />
 					<Add library="libwxmsw30ud_core.a" />
-					<Add library="libwxbase30ud_net.a" />
 					<Add library="libwxbase30ud.a" />
 					<Add library="libwxpngd.a" />
 					<Add library="libwxzlibd.a" />
@@ -75,24 +79,29 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DwxDEBUG_LEVEL=0" />
-					<Add directory="$(#wx30)/lib/gcc_dll64/mswu" />
+					<Add directory="$(#wx30)/lib/gcc_lib64/mswu" />
 					<Add directory="$(#wx30)/include" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="$(#wx30)/lib/gcc_dll64/mswu" />
+					<Add directory="$(#wx30)/lib/gcc_lib64/mswu" />
 					<Add directory="$(#wx30)/include" />
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
 					<Add library="libwxbase30u_xml.a" />
-					<Add library="libwxmsw30u_adv.a" />
 					<Add library="libwxmsw30u_core.a" />
-					<Add library="libwxbase30u_net.a" />
 					<Add library="libwxbase30u.a" />
-					<Add library="libwxpng.a" />
-					<Add library="libwxzlib.a" />
 					<Add library="libwxexpat.a" />
-					<Add directory="$(#wx30)/lib/gcc_dll64" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libole32.a" />
+					<Add library="libuuid.a" />
+					<Add directory="$(#wx30)/lib/gcc_lib64" />
 				</Linker>
 			</Target>
 		</Build>
@@ -107,7 +116,6 @@
 			<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
 			<Add option="-D__GNUWIN32__" />
 			<Add option="-D__WXMSW__" />
-			<Add option="-DWXUSINGDLL" />
 			<Add option="-DwxUSE_UNICODE" />
 		</Compiler>
 		<Unit filename="about.png.cpp">
