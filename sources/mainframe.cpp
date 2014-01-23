@@ -129,12 +129,14 @@ void MainFrame::ConnectControls()
     Connect(wxEVT_MOVE, wxMoveEventHandler(MainFrame::OnMove));
 
     Connect(wxID_OPEN, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuOpenClicked));
+    Connect(wxID_SAVE, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuSaveClicked));
     Connect(wxID_EXIT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuExitClicked));
     Connect(wxID_PREFERENCES, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuOptionsClicked));
     Connect(wxID_ABOUT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuAboutClicked));
 
     m_btnBrwseSrc->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(MainFrame::OnMenuOpenClicked), NULL, this);
     m_chkIncrease->Connect(wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnChkIncreaseClicked), NULL, this);
+    m_btnSave->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(MainFrame::OnMenuSaveClicked), NULL, this);
 
     Connect(wxID_SAVE, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(MainFrame::OnUpdateUI_MenuSave));
 }
@@ -142,6 +144,21 @@ void MainFrame::ConnectControls()
 void MainFrame::UpdateControlsState()
 {
     m_spnIncrease->Enable(m_chkIncrease->IsChecked());
+}
+
+wxBitmapType MainFrame::GetBmpTypeFromFilename(const wxString& filename)
+{
+    wxFileName fname(filename);
+
+    if (!fname.IsOk()) return wxBITMAP_TYPE_INVALID;
+
+    wxString sExt=fname.GetExt().Lower();
+
+    if (sExt==_T("png")) return wxBITMAP_TYPE_PNG;
+    if (sExt==_T("jpg")) return wxBITMAP_TYPE_JPEG;
+    if (sExt==_T("jpeg")) return wxBITMAP_TYPE_JPEG;
+
+    return wxBITMAP_TYPE_INVALID;
 }
 
 void MainFrame::OnClose(wxCloseEvent& event)
@@ -232,5 +249,27 @@ void MainFrame::OnUpdateUI_MenuSave(wxUpdateUIEvent& event)
 
 void MainFrame::OnMenuSaveClicked(wxCommandEvent& event)
 {
-    //
+    wxBitmap bmpSrc;
+    wxFileName SrcFName(m_txtSrcFile->GetValue());
+    // First, check the file name and path
+    if (!SrcFName.IsOk() || !SrcFName.FileExists())
+    {
+        wxMessageBox(_("Invalid source file name !"), _("Error"), wxICON_EXCLAMATION|wxOK|wxCENTER);
+        m_txtSrcFile->SetFocus();
+        return;
+    }
+    int iType=GetBmpTypeFromFilename(SrcFName.GetFullPath());
+    if (iType==wxBITMAP_TYPE_INVALID)
+    {
+        wxMessageBox(_("Unsupported image type !"), _("Error"), wxICON_EXCLAMATION|wxOK|wxCENTER);
+        return;
+    }
+    // Try to load the corresponding image
+    if (!bmpSrc.LoadFile(SrcFName.GetFullPath()), iType)
+    {
+        wxMessageBox(_("Unable to load the image file !"), _("Error"), wxICON_EXCLAMATION|wxOK|wxCENTER);
+        return;
+    }
+
+    wxMessageBox(_T("Done !"));
 }
