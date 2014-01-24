@@ -3,6 +3,7 @@
 #include "mainframe.h"
 #include "appversion.h"
 #include "settingsmanager.h"
+#include "myfiledroptarget.h"
 
 IMPLEMENT_APP(ScreenShotCleanerApp)
 
@@ -19,11 +20,36 @@ bool ScreenShotCleanerApp::OnInit()
     // Read the settings file
     settings.ReadSettings();
 
+    // If a file has been passed by command line
+	// Do as if it has been dropped on the source textbox
+	wxString sFile=wxEmptyString;
+	if (argc>1)
+    {
+        sFile=argv[1];
+        if (!wxFileExists(sFile))
+        {
+            wxMessageBox(_("Invalid source file name !"), _("Error"), wxICON_EXCLAMATION|wxOK|wxCENTER);
+            return false;
+        }
+        if (!wxImage::CanRead(sFile))
+        {
+            wxMessageBox(_("Unsupported image format !"), _("Error"), wxICON_EXCLAMATION|wxOK|wxCENTER);
+            return false;
+        }
+    }
+
 	// Main window creation
 	wxString sTitle=_T(PRODUCTNAME);
 	sTitle << _T(" ") << _T("(v") << VERSION_MAJOR << _T(".") << VERSION_MINOR << _T(") by X@v'");
 
 	MainFrame *frame = new MainFrame(NULL, sTitle);
+
+	if (!sFile.IsEmpty())
+    {
+        wxCommandEvent evt(wxEVT_FILE_DROPPED, wxID_ANY);
+        evt.SetString(sFile);
+        frame->GetEventHandler()->AddPendingEvent(evt);
+    }
 
 	// Show the main window
 	frame->Show();
