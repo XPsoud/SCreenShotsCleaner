@@ -37,6 +37,9 @@ DlgAbout::DlgAbout(wxWindow *parent) : wxDialog(parent, -1, _T("..."), wxDefault
                     label->SetFont(bFnt);
                 vszr1->Add(label, 0, wxALL|wxEXPAND, 5);
 
+                label=new wxStaticText(this, -1, wDESCRIPTION, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER|wxST_NO_AUTORESIZE);
+                vszr1->Add(label, 0, wxALL|wxEXPAND, 5);
+
                 label=new wxStaticText(this, -1, _T(COPYRIGHT), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER|wxST_NO_AUTORESIZE);
                 vszr1->Add(label, 0, wxALL|wxEXPAND, 5);
 
