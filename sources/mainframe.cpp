@@ -62,35 +62,35 @@ void MainFrame::CreateControls()
     wxMenuBar* mbar = new wxMenuBar();
 
     menu = new wxMenu(_T(""));
-        item=new wxMenuItem(menu, wxID_OPEN, _("Open"), _("Select the screenshot file to clean"));
+        item=new wxMenuItem(menu, wxID_OPEN, _("&Open\tCtrl-O"), _("Select the screenshot file to clean"));
         item->SetBitmap(wxGet_file_open_png_Bitmap());
         menu->Append(item);
 
         menu->AppendSeparator();
-        item=new wxMenuItem(menu, wxID_SAVEAS, _("Save as"), _("Browse and enter the name of the file to create"));
+        item=new wxMenuItem(menu, wxID_SAVEAS, _("&Save as\tCtrl-S"), _("Browse and enter the name of the file to create"));
         menu->Append(item);
 
         menu->AppendSeparator();
 
-        item=new wxMenuItem(menu, wxID_SAVE, _("Save"), _("Save the cleaned image"));
+        item=new wxMenuItem(menu, wxID_SAVE, _("S&ave"), _("Save the cleaned image"));
         item->SetBitmap(wxGet_picture_save_png_Bitmap());
         menu->Append(item);
 
         menu->AppendSeparator();
 
-        item=new wxMenuItem(menu, wxID_EXIT, _("Exit"), _("Quit this application"));
+        item=new wxMenuItem(menu, wxID_EXIT, _("E&xit\tCtrl-X"), _("Quit this application"));
         item->SetBitmap(wxGet_app_exit_png_Bitmap());
         menu->Append(item);
     mbar->Append(menu, _("&File"));
 
     menu = new wxMenu(_T(""));
-        item=new wxMenuItem(menu, wxID_PREFERENCES, _("Preferences"), _("Change the application settings"));
+        item=new wxMenuItem(menu, wxID_PREFERENCES, _("&Preferences"), _("Change the application settings"));
         item->SetBitmap(wxGet_configure_png_Bitmap());
         menu->Append(item);
     mbar->Append(menu, _("&Edit"));
 
     menu = new wxMenu(_T(""));
-        item=new wxMenuItem(menu, wxID_ABOUT, _("About"), _("Show informations about this application"));
+        item=new wxMenuItem(menu, wxID_ABOUT, _("&About\tF1"), _("Show informations about this application"));
         item->SetBitmap(wxGet_help_about_png_Bitmap());
         menu->Append(item);
     mbar->Append(menu, _("&Help"));
