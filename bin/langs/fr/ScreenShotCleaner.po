@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ScreenShotCleaner\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-24 15:33+0100\n"
-"PO-Revision-Date: 2014-01-24 15:35+0100\n"
+"POT-Creation-Date: 2014-01-24 15:49+0100\n"
+"PO-Revision-Date: 2014-01-24 15:49+0100\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -24,17 +24,16 @@ msgstr ""
 msgid "About %s"
 msgstr "À propos de %s"
 
-#: sources/dlgabout.cpp:43
+#: sources/dlgabout.cpp:46
 #, c-format
 msgid "Made with Code::Blocks && %s - %d bits"
 msgstr "Créé avec Code::Blocks && %s - %d bits"
 
-#: sources/dlgabout.cpp:52
+#: sources/dlgabout.cpp:55
 msgid "Close"
 msgstr "Fermer"
 
 #: sources/dlgoptions.cpp:9
-#: sources/mainframe.cpp:87
 msgid "Preferences"
 msgstr "Préférences"
 
@@ -63,24 +62,24 @@ msgid "Apply"
 msgstr "Appliquer"
 
 #: sources/mainframe.cpp:65
-msgid "Open"
-msgstr "Ouvrir"
+msgid "&Open\tCtrl-O"
+msgstr "&Ouvir\tCtrl-O"
 
 #: sources/mainframe.cpp:65
 msgid "Select the screenshot file to clean"
 msgstr "Sélectionner le fichier de capture d'écran à nettoyer :"
 
 #: sources/mainframe.cpp:70
-msgid "Save as"
-msgstr "Enregistrer sous"
+msgid "&Save as\tCtrl-S"
+msgstr "En&registrer sous\tCtrl-S"
 
 #: sources/mainframe.cpp:70
 msgid "Browse and enter the name of the file to create"
 msgstr "Parcourir et entrer le nom du fichier à créer"
 
 #: sources/mainframe.cpp:75
-msgid "Save"
-msgstr "Enregistrer"
+msgid "S&ave"
+msgstr "&Enregistrer"
 
 #: sources/mainframe.cpp:75
 #: sources/mainframe.cpp:153
@@ -88,8 +87,8 @@ msgid "Save the cleaned image"
 msgstr "Enregistrer l'image nettoyée"
 
 #: sources/mainframe.cpp:81
-msgid "Exit"
-msgstr "Quitter"
+msgid "E&xit\tCtrl-X"
+msgstr "&Quitter\tCtrl-X"
 
 #: sources/mainframe.cpp:81
 msgid "Quit this application"
@@ -100,6 +99,10 @@ msgid "&File"
 msgstr "&Fichier"
 
 #: sources/mainframe.cpp:87
+msgid "&Preferences"
+msgstr "&Préférences"
+
+#: sources/mainframe.cpp:87
 msgid "Change the application settings"
 msgstr "Modifier les réglages de l'application"
 
@@ -108,8 +111,8 @@ msgid "&Edit"
 msgstr "&Édition"
 
 #: sources/mainframe.cpp:93
-msgid "About"
-msgstr "À propos de"
+msgid "&About\tF1"
+msgstr "&À propos de\tF1"
 
 #: sources/mainframe.cpp:93
 msgid "Show informations about this application"
@@ -241,4 +244,13 @@ msgstr "Une erreur est survenue lors de la récupération des données depuis le
 #: sources/settingsmanager.cpp:237
 msgid "The selected language isn't supported yet !"
 msgstr "La langue sélectionnée n'est pas encore supportée !"
+
+#: sources/appversion.h:14
+msgid "Utility to cleanup screenshots images"
+msgstr "Utilitaire pour nettoyage de captures d'écran"
+
+#~ msgid "Open"
+#~ msgstr "Ouvrir"
+#~ msgid "Exit"
+#~ msgstr "Quitter"
 
