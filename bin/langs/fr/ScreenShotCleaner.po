@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ScreenShotCleaner\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-23 22:22+0100\n"
-"PO-Revision-Date: 2014-01-23 22:23+0100\n"
+"POT-Creation-Date: 2014-01-24 15:33+0100\n"
+"PO-Revision-Date: 2014-01-24 15:35+0100\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgid "Close"
 msgstr "Fermer"
 
 #: sources/dlgoptions.cpp:9
-#: sources/mainframe.cpp:77
+#: sources/mainframe.cpp:87
 msgid "Preferences"
 msgstr "Préférences"
 
@@ -62,80 +62,121 @@ msgstr "Annuler"
 msgid "Apply"
 msgstr "Appliquer"
 
-#: sources/mainframe.cpp:59
+#: sources/mainframe.cpp:65
 msgid "Open"
 msgstr "Ouvrir"
 
-#: sources/mainframe.cpp:59
+#: sources/mainframe.cpp:65
 msgid "Select the screenshot file to clean"
 msgstr "Sélectionner le fichier de capture d'écran à nettoyer :"
 
-#: sources/mainframe.cpp:65
+#: sources/mainframe.cpp:70
+msgid "Save as"
+msgstr "Enregistrer sous"
+
+#: sources/mainframe.cpp:70
+msgid "Browse and enter the name of the file to create"
+msgstr "Parcourir et entrer le nom du fichier à créer"
+
+#: sources/mainframe.cpp:75
 msgid "Save"
 msgstr "Enregistrer"
 
-#: sources/mainframe.cpp:65
-#: sources/mainframe.cpp:117
+#: sources/mainframe.cpp:75
+#: sources/mainframe.cpp:153
 msgid "Save the cleaned image"
 msgstr "Enregistrer l'image nettoyée"
 
-#: sources/mainframe.cpp:71
+#: sources/mainframe.cpp:81
 msgid "Exit"
 msgstr "Quitter"
 
-#: sources/mainframe.cpp:71
+#: sources/mainframe.cpp:81
 msgid "Quit this application"
 msgstr "Quitter cette application"
 
-#: sources/mainframe.cpp:74
+#: sources/mainframe.cpp:84
 msgid "&File"
 msgstr "&Fichier"
 
-#: sources/mainframe.cpp:77
+#: sources/mainframe.cpp:87
 msgid "Change the application settings"
 msgstr "Modifier les réglages de l'application"
 
-#: sources/mainframe.cpp:80
+#: sources/mainframe.cpp:90
 msgid "&Edit"
 msgstr "&Édition"
 
-#: sources/mainframe.cpp:83
+#: sources/mainframe.cpp:93
 msgid "About"
 msgstr "À propos de"
 
-#: sources/mainframe.cpp:83
+#: sources/mainframe.cpp:93
 msgid "Show informations about this application"
 msgstr "Afficher les informations concernant l'application"
 
-#: sources/mainframe.cpp:86
+#: sources/mainframe.cpp:96
 msgid "&Help"
 msgstr "&Aide"
 
-#: sources/mainframe.cpp:95
-msgid "Source file to clean:"
-msgstr "Fichier source à nettoyer :"
+#: sources/mainframe.cpp:106
+msgid "Input:"
+msgstr "Entrée :"
 
-#: sources/mainframe.cpp:102
+#: sources/mainframe.cpp:109
+msgid "Get source image from file:"
+msgstr "Obtenir l'image source depuis un fichier :"
+
+#: sources/mainframe.cpp:117
+#: sources/mainframe.cpp:146
 msgid "..."
 msgstr "..."
 
-#: sources/mainframe.cpp:107
+#: sources/mainframe.cpp:121
+msgid "Get source image from clipboard"
+msgstr "Obtenir l'image source depuis le presse-papier"
+
+#: sources/mainframe.cpp:126
+msgid "Parameters:"
+msgstr "Paramètres :"
+
+#: sources/mainframe.cpp:129
 msgid "Increase the image size by"
 msgstr "Augmenter la taille de l'image de"
 
-#: sources/mainframe.cpp:111
+#: sources/mainframe.cpp:133
 msgid "pixels per side"
 msgstr "pixels par côté"
 
-#: sources/mainframe.cpp:180
+#: sources/mainframe.cpp:138
+msgid "Output:"
+msgstr "Sortie :"
+
+#: sources/mainframe.cpp:140
+msgid "Overwrite the source file"
+msgstr "Écraser le fichier source"
+
+#: sources/mainframe.cpp:225
 msgid "Select an image file"
 msgstr "Sélectionnez un fichier image"
 
-#: sources/mainframe.cpp:181
+#: sources/mainframe.cpp:226
 msgid "Images files|*.png;*.jpg;*.bmp|All files|*.*"
 msgstr "Fichiers images|*.png;*.jpg;*.bmp|Tous les fichiers|*.*"
 
-#: sources/mainframe.cpp:206
+#: sources/mainframe.cpp:238
+msgid "-Cleaned"
+msgstr "-Nettoyé"
+
+#: sources/mainframe.cpp:244
+msgid "Enter the name of the file to create"
+msgstr "Entrez le nom du fichier à créer"
+
+#: sources/mainframe.cpp:245
+msgid "PNG Images files|*.png|JPEG Images files|*.jpg"
+msgstr "Fichiers images PNG|*.png|Fichiers images JPEG|*.jpg"
+
+#: sources/mainframe.cpp:277
 msgid ""
 "The interface language has been changed.\n"
 "You must restart the application for this change to take effect."
@@ -143,28 +184,59 @@ msgstr ""
 "La langue de l'interface a été modifiée.\n"
 "Vous devez redémarrer l'application pour que ce changement prenne effet."
 
-#: sources/mainframe.cpp:206
+#: sources/mainframe.cpp:277
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
 
-#: sources/mainframe.cpp:242
+#: sources/mainframe.cpp:293
+msgid "No source file specified !"
+msgstr "Pas de fichier source spécifié !"
+
+#: sources/mainframe.cpp:300
+msgid "No output file name specified !"
+msgstr "Nom de fichier en sortie non-spécifié !"
+
+#: sources/mainframe.cpp:308
+msgid "Invalid output file name !"
+msgstr "Nom de fichier en sortie invalide !"
+
+#: sources/mainframe.cpp:315
+msgid "Ready to save the cleaned image"
+msgstr "Prêt à enregistrer l'image nettoyée"
+
+#: sources/mainframe.cpp:414
 msgid "Invalid source file name !"
 msgstr "Nom de fichier source invalide !"
 
-#: sources/mainframe.cpp:242
-#: sources/mainframe.cpp:248
-#: sources/mainframe.cpp:255
+#: sources/mainframe.cpp:414
+#: sources/mainframe.cpp:420
+#: sources/mainframe.cpp:426
+#: sources/mainframe.cpp:435
+#: sources/mainframe.cpp:442
+#: sources/mainframe.cpp:448
 #: sources/settingsmanager.cpp:237
 msgid "Error"
 msgstr "Erreur"
 
-#: sources/mainframe.cpp:248
+#: sources/mainframe.cpp:420
 msgid "Unsupported image format !"
 msgstr "Format d'image non pris en charge !"
 
-#: sources/mainframe.cpp:255
+#: sources/mainframe.cpp:426
 msgid "Unable to load the image file !"
 msgstr "Impossible de charger le fichier image !"
+
+#: sources/mainframe.cpp:435
+msgid "No image datas available from clipboard !"
+msgstr "Pas de données d'image disponibles depuis le presse-papier !"
+
+#: sources/mainframe.cpp:442
+msgid "An error occurred while opening the clipboard !"
+msgstr "Une erreur est survenue lors de l'ouverture du presse-papier !"
+
+#: sources/mainframe.cpp:448
+msgid "An error occurred while retreiving the datas from the clipboard !"
+msgstr "Une erreur est survenue lors de la récupération des données depuis le presse-papier !"
 
 #: sources/settingsmanager.cpp:237
 msgid "The selected language isn't supported yet !"
