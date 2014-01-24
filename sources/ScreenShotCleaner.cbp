@@ -158,6 +158,12 @@
 		<Unit filename="menu_icons.h">
 			<Option virtualFolder="Graphx/" />
 		</Unit>
+		<Unit filename="myfiledroptarget.cpp">
+			<Option virtualFolder="Misc/" />
+		</Unit>
+		<Unit filename="myfiledroptarget.h">
+			<Option virtualFolder="Misc/" />
+		</Unit>
 		<Unit filename="resources.rc">
 			<Option compilerVar="WINDRES" />
 			<Option virtualFolder="Misc/" />

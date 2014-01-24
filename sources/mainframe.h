@@ -27,6 +27,7 @@ class MainFrame: public wxFrame
         void OnMenuOptionsClicked(wxCommandEvent &event);
         void OnMenuAboutClicked(wxCommandEvent &event);
         void OnTxtDstFileChanged(wxCommandEvent &event);
+        void OnFileDropped(wxCommandEvent &event);
         void OnUpdateUI_MenuSave(wxUpdateUIEvent &event);
         void OnUpdateUI_OptSource(wxUpdateUIEvent &event);
         void OnUpdateUI_TxtSrcFile(wxUpdateUIEvent &event);

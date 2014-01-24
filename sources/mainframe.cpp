@@ -4,6 +4,7 @@
 #include "dlgoptions.h"
 #include "menu_icons.h"
 #include "settingsmanager.h"
+#include "myfiledroptarget.h"
 
 #include <wx/clipbrd.h>
 #include <wx/filename.h>
@@ -159,6 +160,8 @@ void MainFrame::CreateControls()
 
     // Default values
     m_chkIncrease->SetValue(false);
+    // Accept dropping file into the source wxTextCtrl
+    m_txtSrcFile->SetDropTarget(new MyFileDropTarget(this));
 }
 
 void MainFrame::ConnectControls()
@@ -166,6 +169,8 @@ void MainFrame::ConnectControls()
     Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(MainFrame::OnClose));
     Connect(wxEVT_SIZE, wxSizeEventHandler(MainFrame::OnSize));
     Connect(wxEVT_MOVE, wxMoveEventHandler(MainFrame::OnMove));
+
+    Connect(wxEVT_FILE_DROPPED, wxCommandEventHandler(MainFrame::OnFileDropped));
 
     Connect(wxID_OPEN, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuOpenClicked));
     Connect(wxID_SAVE, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnMenuSaveClicked));
@@ -495,4 +500,16 @@ void MainFrame::OnMenuSaveClicked(wxCommandEvent& event)
     wxFileName DstFName(m_txtDstFile->GetValue());
     imgSrc.SaveFile(DstFName.GetFullPath());
     wxMessageBox(_T("Done !"));
+}
+
+void MainFrame::OnFileDropped(wxCommandEvent& event)
+{
+    // The source file name is the one of the dropped file
+    m_sSrcFName=event.GetString();
+    // Switch to "Source file" mode
+    m_optSource[0]->SetValue(true);
+    // Update the output file name
+    wxFileName fname(m_sSrcFName);
+    fname.SetName(fname.GetName() + _("-Cleaned"));
+    m_sDstFName1=fname.GetFullPath();
 }
