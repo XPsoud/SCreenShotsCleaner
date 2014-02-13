@@ -39,6 +39,8 @@ void ProfilesManager::Initialize()
 #ifdef SHOW_DEBUG_MSG
     wxPrintf(_T("Initializing the ProfilesManager\n"));
 #endif // ENABLE_DEBUG_MSG
+    // Be sure that nothing remains in the Profile list
+    Clear();
 
     m_bInitialized=true;
 }

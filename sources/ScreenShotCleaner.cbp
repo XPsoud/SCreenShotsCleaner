@@ -5,7 +5,7 @@
 		<Option title="ScreenShotCleaner" />
 		<Option default_target="Release32" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Interface\;Misc\;Dialogs\;Graphx\;" />
+		<Option virtualFolders="Interface\;Misc\;Dialogs\;Graphx\;Profiles\;" />
 		<Build>
 			<Target title="Release32">
 				<Option output="../bin/ScreenShotCleaner32" prefix_auto="1" extension_auto="1" />
@@ -164,17 +164,23 @@
 		<Unit filename="myfiledroptarget.h">
 			<Option virtualFolder="Misc/" />
 		</Unit>
+		<Unit filename="prfpoint.cpp">
+			<Option virtualFolder="Profiles/" />
+		</Unit>
+		<Unit filename="prfpoint.h">
+			<Option virtualFolder="Profiles/" />
+		</Unit>
 		<Unit filename="profile.cpp">
-			<Option virtualFolder="Misc/" />
+			<Option virtualFolder="Profiles/" />
 		</Unit>
 		<Unit filename="profile.h">
-			<Option virtualFolder="Misc/" />
+			<Option virtualFolder="Profiles/" />
 		</Unit>
 		<Unit filename="profilesmanager.cpp">
-			<Option virtualFolder="Misc/" />
+			<Option virtualFolder="Profiles/" />
 		</Unit>
 		<Unit filename="profilesmanager.h">
-			<Option virtualFolder="Misc/" />
+			<Option virtualFolder="Profiles/" />
 		</Unit>
 		<Unit filename="resources.rc">
 			<Option compilerVar="WINDRES" />
