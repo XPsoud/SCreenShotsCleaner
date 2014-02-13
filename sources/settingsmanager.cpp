@@ -1,5 +1,7 @@
 #include "settingsmanager.h"
 
+#include "profilesmanager.h"
+
 #include <wx/dir.h>
 #include <wx/zstream.h>
 #include <wx/xml/xml.h>
@@ -120,6 +122,11 @@ bool SettingsManager::ReadSettings()
             node->GetAttribute(_T("Width"), wxString::Format(_T("%0d"), m_szLastSize.GetWidth())).ToLong(&lVal); m_szLastSize.SetWidth(lVal);
             node->GetAttribute(_T("Height"), wxString::Format(_T("%0d"), m_szLastSize.GetHeight())).ToLong(&lVal); m_szLastSize.SetHeight(lVal);
         }
+        if (nodName==_T("Profiles")) // Custom screenshots profiles
+        {
+            ProfilesManager& prfMngr=ProfilesManager::Get();
+            prfMngr.ReadFromXmlNode(node);
+        }
     	node = node->GetNext();
     }
     // Do we have to set the language ?
@@ -154,6 +161,15 @@ bool SettingsManager::SaveSettings()
     node=node->GetNext();
     node->AddAttribute(_T("Code"), wxLocale::GetLanguageCanonicalName(m_iLangIndex));
     node->AddAttribute(_T("Name"), wxLocale::GetLanguageName(m_iLangIndex));
+    // Custom screenshots profiles
+    ProfilesManager& prfMngr=ProfilesManager::Get();
+
+    if (prfMngr.HasNonEmbeddedProfiles())
+    {
+        node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("Profiles")));
+        node=node->GetNext();
+        prfMngr.SaveToXmlNode(node);
+    }
 
     wxXmlDocument doc;
     doc.SetRoot(root);

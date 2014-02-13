@@ -164,6 +164,18 @@
 		<Unit filename="myfiledroptarget.h">
 			<Option virtualFolder="Misc/" />
 		</Unit>
+		<Unit filename="profile.cpp">
+			<Option virtualFolder="Misc/" />
+		</Unit>
+		<Unit filename="profile.h">
+			<Option virtualFolder="Misc/" />
+		</Unit>
+		<Unit filename="profilesmanager.cpp">
+			<Option virtualFolder="Misc/" />
+		</Unit>
+		<Unit filename="profilesmanager.h">
+			<Option virtualFolder="Misc/" />
+		</Unit>
 		<Unit filename="resources.rc">
 			<Option compilerVar="WINDRES" />
 			<Option virtualFolder="Misc/" />
