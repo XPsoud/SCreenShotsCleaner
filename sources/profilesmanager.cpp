@@ -76,9 +76,9 @@ void ProfilesManager::CreateEmbeddedProfiles()
     // If the profiles list isn't empty, the embedded profiles has been created yet
     if (!m_profiles.IsEmpty()) return;
 
-    // Windows 7 Default Aero Theme
-    Profile* prf1=new Profile(_T("Windows 7 Default Aero Theme"));
-    Profile* prf2=new Profile(_T("Windows XP Default Theme"));
+    // Windows 7 Default Aero Theme and Windows XP Default Theme
+    Profile* prf1=new Profile(_("Windows 7 Default Aero Theme"));
+    Profile* prf2=new Profile(_("Windows XP Default Theme"));
     PrfPoint *pt;
     // Pixels to remove in both profiles
     int iClear[5]={5,3,2,1,1};
@@ -100,6 +100,7 @@ void ProfilesManager::CreateEmbeddedProfiles()
 
     m_profiles.Append(prf1);
     m_profiles.Append(prf2);
+    m_profiles.Append(new Profile(_("Profile for no pixels treatment")));
 }
 
 void ProfilesManager::SaveToXmlNode(wxXmlNode* container)

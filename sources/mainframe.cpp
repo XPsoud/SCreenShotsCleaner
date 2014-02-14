@@ -3,6 +3,7 @@
 #include "dlgabout.h"
 #include "dlgoptions.h"
 #include "menu_icons.h"
+#include "profilesmanager.h"
 #include "settingsmanager.h"
 #include "myfiledroptarget.h"
 
@@ -134,6 +135,13 @@ void MainFrame::CreateControls()
                 label=new wxStaticText(pnl, -1, _("pixels per side"));
                 lnszr->Add(label, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, iSpaces);
             box->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, iSpaces);
+
+            lnszr=new wxBoxSizer(wxHORIZONTAL);
+                label=new wxStaticText(pnl, -1, _("Processing profile:"));
+                lnszr->Add(label, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0);
+                m_cmbProfile=new wxChoice(pnl, -1);
+                lnszr->Add(m_cmbProfile, 1, wxLEFT|wxALIGN_CENTER_VERTICAL, iSpaces);
+            box->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, iSpaces);
         szrMain->Add(box, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, iSpaces);
 
         box=new wxStaticBoxSizer(wxVERTICAL, pnl, _("Output:"));
@@ -160,6 +168,15 @@ void MainFrame::CreateControls()
 
     // Default values
     m_chkIncrease->SetValue(false);
+    // Processing profiles list
+    ProfilesManager& prfMngr=ProfilesManager::Get();
+    int iCount=prfMngr.GetProfilesCount();
+    for (int i=0; i<iCount; i++)
+    {
+        Profile* prf=prfMngr.GetProfile(i);
+        m_cmbProfile->Append(prf->GetName(), (void*)prf);
+    }
+    m_cmbProfile->SetSelection(0);
     // Accept dropping file into the source wxTextCtrl
     m_txtSrcFile->SetDropTarget(new MyFileDropTarget(this));
 }
@@ -459,37 +476,13 @@ void MainFrame::OnMenuSaveClicked(wxCommandEvent& event)
 
     if (!imgSrc.HasAlpha()) imgSrc.InitAlpha();
 
-    // Clear pixels of rounded angles
-    wxSize szImg=imgSrc.GetSize();
-    int iWdth=szImg.GetWidth()-1, iHght=szImg.GetHeight()-1;
-    int iClear[5]={5,3,2,1,1};
-    for (int y=0; y<5; y++)
-    {
-        for (int x=0; x<iClear[y]; x++)
-        {
-            imgSrc.SetAlpha(x, y, 0); imgSrc.SetRGB(x, y, 255, 255, 255);
-            imgSrc.SetAlpha(iWdth-x, y, 0); imgSrc.SetRGB(iWdth-x, y, 255, 255, 255);
-            imgSrc.SetAlpha(x, iHght-y, 0); imgSrc.SetRGB(x, iHght-y, 255, 255, 255);
-            imgSrc.SetAlpha(iWdth-x, iHght-y, 0); imgSrc.SetRGB(iWdth-x, iHght-y, 255, 255, 255);
-        }
-    }
-    int iXFrom[4]={6, 4, 2, 1}, iXTo[4]={5, 3, 2, 1};
-    int iYFrom[4]={1, 2, 4, 6}, iYTo[4]={1, 2, 3, 5};
-    int xT, yT, xF, yF;
-    for (int i=0; i<4; i++)
-    {
-        xF=iXFrom[i]; yF=iYFrom[i]; xT=iXTo[i]; yT=iYTo[i];
-        imgSrc.SetRGB(xT, yT, imgSrc.GetRed(xF, yF), imgSrc.GetGreen(xF, yF), imgSrc.GetBlue(xF, yF));
-        xF=iWdth-iXFrom[i]; xT=iWdth-iXTo[i];
-        imgSrc.SetRGB(xT, yT, imgSrc.GetRed(xF, yF), imgSrc.GetGreen(xF, yF), imgSrc.GetBlue(xF, yF));
-        yF=iHght-iYFrom[i]; yT=iHght-iYTo[i];
-        imgSrc.SetRGB(xT, yT, imgSrc.GetRed(xF, yF), imgSrc.GetGreen(xF, yF), imgSrc.GetBlue(xF, yF));
-        xF=iXFrom[i]; xT=iXTo[i];
-        imgSrc.SetRGB(xT, yT, imgSrc.GetRed(xF, yF), imgSrc.GetGreen(xF, yF), imgSrc.GetBlue(xF, yF));
-    }
+    ProfilesManager& prfMngr=ProfilesManager::Get();
+    Profile* prf=prfMngr.GetProfile(1);
+    prf->Apply(imgSrc);
 
     if (m_chkIncrease->IsChecked())
     {
+        wxSize szImg=imgSrc.GetSize();
         int iInc=m_spnIncrease->GetValue();
         szImg.IncBy(iInc*2);
         // Set mask color to white (for images formats that don't support alpha)

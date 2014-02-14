@@ -16,12 +16,12 @@ bool ScreenShotCleanerApp::OnInit()
 
     wxInitAllImageHandlers();
 
-    // Init the ProfilesManager instance
-    ProfilesManager::Get();
     // Init the SettingManager instance
     SettingsManager& settings=SettingsManager::Get();
     // Read the settings file
     settings.ReadSettings();
+    // Init the ProfilesManager instance if not done by ReadSettings
+    ProfilesManager::Get();
 
     // If a file has been passed by command line
 	// Do as if it has been dropped on the source textbox

@@ -42,6 +42,7 @@ class MainFrame: public wxFrame
         wxButton *m_btnBrwseSrc, *m_btnBrwseDst, *m_btnSave;
         wxCheckBox *m_chkIncrease, *m_chkOverwrite;
         wxSpinCtrl *m_spnIncrease;
+        wxChoice *m_cmbProfile;
         // Other vars
         wxString m_sSrcFName, m_sDstFName1, m_sDstFName2;
         SettingsManager& m_options;

@@ -114,6 +114,11 @@ bool SettingsManager::ReadSettings()
 				sValue.ToLong(&lVal);
 			}
             iNewLang=lVal;
+            // Do we have to set the language ?
+            if (iNewLang!=m_iLangIndex)
+            {
+                SetLanguage(iNewLang);
+            }
         }
         if (nodName==_T("WindowRect")) // Last known position of the main window
         {
@@ -129,11 +134,7 @@ bool SettingsManager::ReadSettings()
         }
     	node = node->GetNext();
     }
-    // Do we have to set the language ?
-    if (iNewLang!=m_iLangIndex)
-    {
-        SetLanguage(iNewLang);
-    }
+
     m_bModified=false;
     return true;
 }
