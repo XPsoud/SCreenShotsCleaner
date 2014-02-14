@@ -191,7 +191,7 @@ long PrfPoint::GetMirroredCoord(long total, long delta, wxEdge refSide)
     {
         case wxLeft:
         case wxTop:
-            return total-delta;
+            return total-1-delta;
         case wxCenter:
             return (total/2)-delta;
         case wxRight:
