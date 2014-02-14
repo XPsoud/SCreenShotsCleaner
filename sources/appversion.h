@@ -1,12 +1,12 @@
 #ifndef __APPVERSION_H_INCLUDED__
 #define __APPVERSION_H_INCLUDED__
 
-#define VERSION_MAJOR	1
-#define VERSION_MINOR	2
+#define VERSION_MAJOR	2
+#define VERSION_MINOR	0
 #define VERSION_REV     0
 // Add "201" before the number below to obtain
-// the complete date in format : YYYYMMJJ
-#define VERSION_BUILD   40124
+// the complete date in format : YYYYMMDD
+#define VERSION_BUILD   40214
 
 #define PRODUCTNAME "ScreenShotCleaner"
 #define COMPANYNAME "X.P. Softs"
