@@ -9,7 +9,8 @@ class wxXmlNode;
 class Profile
 {
     public:
-        Profile(wxXmlNode* container=NULL);
+        Profile(wxXmlNode* container=NULL); // Creating a normal profile
+        Profile(const wxString& name);      // Create an embedded profile
         virtual ~Profile();
         void Clear();
         void FromXmlNode(wxXmlNode* container);
@@ -23,9 +24,10 @@ class Profile
         // Points management
         int GetPointsCount();
         PrfPoint* AddNewPoint();
+        PrfPoint* AddNewPoint(long X, wxEdge refX, long Y, wxEdge refY);
     protected:
     private:
-        //
+        void Create();
         static int m_iItemsCount;
         bool m_bModified, m_bEmbedded;
         wxString m_sName, m_sLastError;

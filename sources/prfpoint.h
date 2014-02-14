@@ -16,6 +16,7 @@ class PrfPoint
         void UnsetCopyPoint();
         void SetPoint(long X, wxEdge refX, long Y, wxEdge refY);
         void SetCopyPoint(long XF, wxEdge refXF, long YF, wxEdge refYF);
+        void SetMirrors(bool hMirror, bool vMirror);
         void SetMirrorH(bool value=true);
         void SetMirrorV(bool value=true);
         void FromXmlNode(wxXmlNode* container);

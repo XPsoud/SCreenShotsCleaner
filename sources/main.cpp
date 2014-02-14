@@ -2,6 +2,7 @@
 
 #include "mainframe.h"
 #include "appversion.h"
+#include "profilesmanager.h"
 #include "settingsmanager.h"
 #include "myfiledroptarget.h"
 
@@ -15,6 +16,8 @@ bool ScreenShotCleanerApp::OnInit()
 
     wxInitAllImageHandlers();
 
+    // Init the ProfilesManager instance
+    ProfilesManager::Get();
     // Init the SettingManager instance
     SettingsManager& settings=SettingsManager::Get();
     // Read the settings file

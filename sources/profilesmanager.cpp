@@ -41,6 +41,7 @@ void ProfilesManager::Initialize()
 #endif // ENABLE_DEBUG_MSG
     // Be sure that nothing remains in the Profile list
     Clear();
+    CreateEmbeddedProfiles();
 
     m_bInitialized=true;
 }
@@ -76,7 +77,29 @@ void ProfilesManager::CreateEmbeddedProfiles()
     if (!m_profiles.IsEmpty()) return;
 
     // Windows 7 Default Aero Theme
-    // Windows XP Default Theme
+    Profile* prf1=new Profile(_T("Windows 7 Default Aero Theme"));
+    Profile* prf2=new Profile(_T("Windows XP Default Theme"));
+    PrfPoint *pt;
+    // Pixels to remove in both profiles
+    int iClear[5]={5,3,2,1,1};
+    for (int y=0; y<5; y++)
+    {
+        for (int x=0; x<iClear[y]; x++)
+        {
+            pt=prf1->AddNewPoint(x, wxLeft, y, wxTop); pt->SetMirrors(true, true);
+            pt=prf2->AddNewPoint(x, wxLeft, y, wxTop); pt->SetMirrors(true, false);
+        }
+    }
+    // Pixels to copy in Win7 style
+    int iXFrom[4]={6, 4, 2, 1}, iXTo[4]={5, 3, 2, 1};
+    int iYFrom[4]={1, 2, 4, 6}, iYTo[4]={1, 2, 3, 5};
+    for (int i=0; i<4; i++)
+    {
+        pt=prf1->AddNewPoint(iXTo[i], wxLeft, iYTo[i], wxTop); pt->SetCopyPoint(iXFrom[i], wxLeft, iYFrom[i], wxTop); pt->SetMirrors(true, true);
+    }
+
+    m_profiles.Append(prf1);
+    m_profiles.Append(prf2);
 }
 
 void ProfilesManager::SaveToXmlNode(wxXmlNode* container)

@@ -67,6 +67,12 @@ void PrfPoint::SetCopyPoint(long XF, wxEdge refXF, long YF, wxEdge refYF)
     m_lYFrom=YF; m_iRefYFrom=refYF;
 }
 
+void PrfPoint::SetMirrors(bool hMirror, bool vMirror)
+{
+    m_bMirrorH=hMirror;
+    m_bMirrorV=vMirror;
+}
+
 void PrfPoint::SetMirrorH(bool value)
 {
     m_bMirrorH=value;

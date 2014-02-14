@@ -9,17 +9,24 @@ int Profile::m_iItemsCount = 0;
 Profile::Profile(wxXmlNode* container)
 {
 #ifdef SHOW_DEBUG_MSG
-    wxPrintf(_T("Creating a \"Profile\" object\n"));
+    wxPrintf(_T("Creating a normal \"Profile\" object\n"));
 #endif // SHOW_DEBUG_MSG
-    m_iItemsCount++;
-    // Default values
-    m_sName.Printf(_T("Profile #%d"), m_iItemsCount);
-    m_sLastError=wxEmptyString;
 
-    m_bModified=true;
+    Create();
 
     if (container!=NULL)
         FromXmlNode(container);
+}
+
+Profile::Profile(const wxString& name)
+{
+#ifdef SHOW_DEBUG_MSG
+    wxPrintf(_T("Creating an embedded \"Profile\" object\n"));
+#endif // SHOW_DEBUG_MSG
+
+    Create();
+    m_sName=name;
+    m_bEmbedded=true;
 }
 
 Profile::~Profile()
@@ -30,6 +37,17 @@ Profile::~Profile()
     Clear();
 
     m_iItemsCount--;
+}
+
+void Profile::Create()
+{
+    m_iItemsCount++;
+    // Default values
+    m_sName.Printf(_T("Profile #%d"), m_iItemsCount);
+    m_sLastError=wxEmptyString;
+    m_bEmbedded=false;
+
+    m_bModified=true;
 }
 
 void Profile::Clear()
@@ -109,6 +127,16 @@ int Profile::GetPointsCount()
 PrfPoint* Profile::AddNewPoint()
 {
     PrfPoint *item=new PrfPoint();
+
+    m_Points.Append(item);
+    m_bModified=true;
+
+    return item;
+}
+
+PrfPoint* Profile::AddNewPoint(long X, wxEdge refX, long Y, wxEdge refY)
+{
+    PrfPoint *item=new PrfPoint(X, refX, Y, refY);
 
     m_Points.Append(item);
     m_bModified=true;
