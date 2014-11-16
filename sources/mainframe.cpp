@@ -477,7 +477,9 @@ void MainFrame::OnMenuSaveClicked(wxCommandEvent& event)
     if (!imgSrc.HasAlpha()) imgSrc.InitAlpha();
 
     ProfilesManager& prfMngr=ProfilesManager::Get();
-    Profile* prf=prfMngr.GetProfile(1);
+    int iPrfIndex=m_cmbProfile->GetSelection();
+    Profile* prf=prfMngr.GetProfile(iPrfIndex);
+    if (prf==NULL) return;
     prf->Apply(imgSrc);
 
     if (m_chkIncrease->IsChecked())
