@@ -14,5 +14,8 @@
 # Intermediate folder
 build/
 
+# Mac specific files
+.DS_Store
+
 # Settings files
 bin/*.xml
