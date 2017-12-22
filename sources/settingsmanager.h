@@ -34,7 +34,7 @@ class SettingsManager
 		// Unique instance of the singleton
 		static SettingsManager m_instance;
 		// Misc vars
-		wxString m_sAppPath;
+		wxString m_sAppPath, m_sLngPath, m_sSettingsPath;
 		bool m_bInitialized, m_bModified;
 		wxLocale *m_locale;
 		int m_iLangIndex;

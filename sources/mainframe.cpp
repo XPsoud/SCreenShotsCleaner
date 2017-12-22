@@ -10,6 +10,10 @@
 #include <wx/clipbrd.h>
 #include <wx/filename.h>
 
+#ifndef __WXMSW__
+	#include "../graphx/wxwin32x32.xpm"
+#endif // __WXMSW__
+
 MainFrame::MainFrame(wxWindow *parent, const wxString& title) :
 	wxFrame(parent, wxID_ANY, title), m_options(SettingsManager::Get())
 {
@@ -21,7 +25,7 @@ MainFrame::MainFrame(wxWindow *parent, const wxString& title) :
 	m_sDstFName1=wxEmptyString;
 	m_sDstFName2=wxEmptyString;
 
-	SetIcon(wxICON(appicon));
+	SetIcon(wxICON(appIcon));
 
 	CreateControls();
 	ConnectControls();
@@ -60,47 +64,55 @@ void MainFrame::CreateControls()
 	CreateStatusBar();
 	// Menu Bar
 	wxMenuItem *item;
-	wxMenu *menu;
+	wxMenu *mnuFile, *mnuEdit, *mnuHelp;
 	wxMenuBar* mbar = new wxMenuBar();
 
 	#define StdMenuLabel(item) wxGetStockLabel(item, wxSTOCK_WITH_MNEMONIC|wxSTOCK_WITH_ACCELERATOR)
 
-	menu = new wxMenu(_T(""));
-		item=new wxMenuItem(menu, wxID_OPEN, StdMenuLabel(wxID_OPEN), _("Select the screenshot file to clean"));
+	mnuFile = new wxMenu(_T(""));
+		item=new wxMenuItem(mnuFile, wxID_OPEN, StdMenuLabel(wxID_OPEN), _("Select the screenshot file to clean"));
 		item->SetBitmap(wxGet_file_open_png_Bitmap());
-		menu->Append(item);
+		mnuFile->Append(item);
 
-		menu->AppendSeparator();
-		item=new wxMenuItem(menu, wxID_SAVEAS, StdMenuLabel(wxID_SAVEAS), _("Browse and enter the name of the file to create"));
-		menu->Append(item);
+		mnuFile->AppendSeparator();
+		item=new wxMenuItem(mnuFile, wxID_SAVEAS, StdMenuLabel(wxID_SAVEAS), _("Browse and enter the name of the file to create"));
+		mnuFile->Append(item);
 
-		menu->AppendSeparator();
+		mnuFile->AppendSeparator();
 
-		item=new wxMenuItem(menu, wxID_SAVE, StdMenuLabel(wxID_SAVE), _("Save the cleaned image"));
+		item=new wxMenuItem(mnuFile, wxID_SAVE, StdMenuLabel(wxID_SAVE), _("Save the cleaned image"));
 		item->SetBitmap(wxGet_picture_save_png_Bitmap());
-		menu->Append(item);
+		mnuFile->Append(item);
 
-		menu->AppendSeparator();
+		mnuFile->AppendSeparator();
 
-		item=new wxMenuItem(menu, wxID_EXIT, StdMenuLabel(wxID_EXIT));
+		item=new wxMenuItem(mnuFile, wxID_EXIT, StdMenuLabel(wxID_EXIT));
 		item->SetBitmap(wxGet_app_exit_png_Bitmap());
-		menu->Append(item);
-	mbar->Append(menu, wxGetStockLabel(wxID_FILE, wxSTOCK_WITH_MNEMONIC));
+		mnuFile->Append(item);
+	mbar->Append(mnuFile, wxGetStockLabel(wxID_FILE, wxSTOCK_WITH_MNEMONIC));
 
-	menu = new wxMenu(_T(""));
-		item=new wxMenuItem(menu, wxID_PREFERENCES, StdMenuLabel(wxID_PREFERENCES), _("Change the application settings"));
+	mnuEdit = new wxMenu(_T(""));
+		item=new wxMenuItem(mnuEdit, wxID_PREFERENCES, StdMenuLabel(wxID_PREFERENCES), _("Change the application settings"));
 		item->SetBitmap(wxGet_configure_png_Bitmap());
-		menu->Append(item);
-	mbar->Append(menu, wxGetStockLabel(wxID_EDIT, wxSTOCK_WITH_MNEMONIC));
+		mnuEdit->Append(item);
+	mbar->Append(mnuEdit, wxGetStockLabel(wxID_EDIT, wxSTOCK_WITH_MNEMONIC));
 
-	menu = new wxMenu(_T(""));
-		item=new wxMenuItem(menu, wxID_ABOUT, StdMenuLabel(wxID_ABOUT), _("Show informations about this application"));
+	mnuHelp = new wxMenu(_T(""));
+		item=new wxMenuItem(mnuHelp, wxID_ABOUT, StdMenuLabel(wxID_ABOUT), _("Show informations about this application"));
 		item->SetBitmap(wxGet_help_about_png_Bitmap());
-		menu->Append(item);
-	mbar->Append(menu, wxGetStockLabel(wxID_HELP, wxSTOCK_WITH_MNEMONIC));
+		mnuHelp->Append(item);
+	mbar->Append(mnuHelp, wxGetStockLabel(wxID_HELP, wxSTOCK_WITH_MNEMONIC));
 
 	SetMenuBar(mbar);
-
+#ifdef __WXMAC__
+	// On OS X, Preferences and about menus are automatically
+	// transferred in the Apple menu
+	// We can remove the Edit and Help menus
+	mbar->Remove(2);
+	delete mnuHelp;
+	mbar->Remove(1);
+	delete mnuEdit;
+#endif // __WXMAC__
 	// Controls
 	wxPanel *pnl=new wxPanel(this, -1);
 	wxStaticText *label;

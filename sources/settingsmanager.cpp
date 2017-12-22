@@ -48,6 +48,18 @@ void SettingsManager::Initialize()
 	m_sAppPath = wxPathOnly(wxStandardPaths::Get().GetExecutablePath());
 	if (!m_sAppPath.EndsWith(wxFileName::GetPathSeparator()))
 		m_sAppPath.Append(wxFileName::GetPathSeparator());
+#ifdef __WXMAC__
+    m_sLngPath=wxStandardPaths::Get().GetResourcesDir();
+	if (!m_sLngPath.EndsWith(wxFileName::GetPathSeparator()))
+		m_sLngPath.Append(wxFileName::GetPathSeparator());
+	m_sSettingsPath=wxStandardPaths::Get().GetUserDataDir();
+    if (!m_sSettingsPath.EndsWith(wxFileName::GetPathSeparator()))
+        m_sSettingsPath.Append(wxFileName::GetPathSeparator());
+#else
+    m_sLngPath=m_sAppPath;
+	m_sSettingsPath=m_sAppPath;
+#endif // __WXMAC__
+	m_sLngPath.Append(_T("langs"));
 	// Set default language
 	SetLanguage();
 	// Default position and size fo the main window
@@ -68,9 +80,9 @@ bool SettingsManager::IsModified()
 bool SettingsManager::ReadSettings()
 {
 #ifdef NO_SETTINGS_FILE_COMPRESSION
-	wxString sFName=m_sAppPath + _T("Settings.xml");
+	wxString sFName=m_sSettingsPath + _T("Settings.xml");
 #else
-	wxString sFName=m_sAppPath + _T("Settings.zml");
+	wxString sFName=m_sSettingsPath + _T("Settings.zml");
 #endif // NO_SETTINGS_FILE_COMPRESSION
 
 	if (!wxFileExists(sFName)) return false;
@@ -149,9 +161,9 @@ bool SettingsManager::ReadSettings()
 bool SettingsManager::SaveSettings()
 {
 #ifdef NO_SETTINGS_FILE_COMPRESSION
-	wxString sFName=m_sAppPath + _T("Settings.xml");
+	wxString sFName=m_sSettingsPath + _T("Settings.xml");
 #else
-	wxString sFName=m_sAppPath + _T("Settings.zml");
+	wxString sFName=m_sSettingsPath + _T("Settings.zml");
 #endif // NO_SETTINGS_FILE_COMPRESSION
 
 	wxXmlNode *root = new wxXmlNode(NULL,wxXML_ELEMENT_NODE, _T("ScreenShotCleaner_Settings-file"), wxEmptyString,
@@ -188,6 +200,13 @@ bool SettingsManager::SaveSettings()
 
 	wxFileName fname(sFName);
 
+	//Check if the folder exists
+    if (!fname.DirExists())
+    {
+        // Try to create the folder
+        if (!fname.Mkdir(wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+            return false;
+    }
 	if (fname.FileExists())
 	{
 		if (!wxRemoveFile(fname.GetFullPath()))
@@ -207,11 +226,10 @@ bool SettingsManager::SaveSettings()
 wxArrayString SettingsManager::GetAvailableLanguages()
 {
 	wxArrayString langs;
-	wxString sDir=m_sAppPath + _T("langs");
 	// Default Language : english
 	langs.Add(_T("en"));
 	// Get all the files named "ScreenShotCleaner.mo" in the "langs" sub-folders
-	wxDir::GetAllFiles(sDir, &langs, _T("ScreenShotCleaner.mo"), wxDIR_FILES|wxDIR_DIRS);
+	wxDir::GetAllFiles(m_sLngPath, &langs, _T("ScreenShotCleaner.mo"), wxDIR_FILES|wxDIR_DIRS);
 	// Keep only the folders names
 	int iCount=langs.Count();
 	for (int i=0;i<iCount;i++)
@@ -219,7 +237,7 @@ wxArrayString SettingsManager::GetAvailableLanguages()
 		if (i)
 		{
 			wxFileName fname(langs[i]);
-			fname.MakeRelativeTo(sDir);
+			fname.MakeRelativeTo(m_sLngPath);
 			langs[i]=fname.GetPath();
 		}
 		const wxLanguageInfo* info=wxLocale::FindLanguageInfo(langs[i]);
@@ -236,8 +254,7 @@ void SettingsManager::SetLanguage(int lang)
 	}
 
 	m_locale=new wxLocale();
-
-	m_locale->AddCatalogLookupPathPrefix(m_sAppPath + _T("langs"));
+	m_locale->AddCatalogLookupPathPrefix(m_sLngPath);
 	int lng;
 	if (lang==wxLANGUAGE_DEFAULT)
 	{
@@ -257,6 +274,9 @@ void SettingsManager::SetLanguage(int lang)
 		if (m_locale->Init(lng, wxLOCALE_LOAD_DEFAULT))
 		{
 			m_locale->AddCatalog(_T("ScreenShotCleaner"));
+#ifdef __WXGTK__
+        	m_locale->AddCatalog(_T("wxStd")); // Don't know yet why it isn't loaded automatically :-/
+#endif // __WXGTK__
 		}
 		else
 		{
@@ -271,7 +291,7 @@ void SettingsManager::SetLanguage(int lang)
 		}
 	} else {
 		m_iLangIndex=wxLANGUAGE_ENGLISH;
-		m_locale->Init(wxLANGUAGE_ENGLISH, wxLOCALE_DONT_LOAD_DEFAULT);
+		m_locale->Init(wxLANGUAGE_ENGLISH, wxLOCALE_LOAD_DEFAULT);
 	}
 }
 

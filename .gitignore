@@ -11,8 +11,9 @@
 *.depend
 *.cdTemp
 
-# Intermediate folder
+# Intermediate and final folders
 build/
+bin/
 
 # Mac specific files
 .DS_Store
