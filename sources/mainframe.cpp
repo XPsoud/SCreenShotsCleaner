@@ -178,7 +178,10 @@ void MainFrame::CreateControls()
 		Profile* prf=prfMngr.GetProfile(i);
 		m_cmbProfile->Append(prf->GetName(), (void*)prf);
 	}
-	m_cmbProfile->SetSelection(0);
+	int iSel=m_options.GetLastSelectedProfile();
+	if ((iSel<0)||(iSel>=iCount))
+		iSel=0;
+	m_cmbProfile->SetSelection(iSel);
 	// Accept dropped file into the source wxTextCtrl
 	m_txtSrcFile->SetDropTarget(new MyFileDropTarget(this));
 }
@@ -203,6 +206,7 @@ void MainFrame::ConnectControls()
 	m_btnBrwseDst->Bind(wxEVT_BUTTON, &MainFrame::OnMenuSaveAsClicked, this);
 	m_btnSave->Bind(wxEVT_BUTTON, &MainFrame::OnMenuSaveClicked, this);
 	m_txtDstFile->Bind(wxEVT_TEXT, &MainFrame::OnTxtDstFileChanged, this);
+	m_cmbProfile->Bind(wxEVT_CHOICE, &MainFrame::OnProfileChanged, this);
 	// Update_UI events handlers
 	Bind(wxEVT_UPDATE_UI, &MainFrame::OnUpdateUI_MenuSave, this, wxID_SAVE);
 	Bind(wxEVT_UPDATE_UI, &MainFrame::OnUpdateUI_BtnBrwseDst, this, wxID_SAVEAS);
@@ -509,4 +513,11 @@ void MainFrame::OnFileDropped(wxCommandEvent& event)
 	wxFileName fname(m_sSrcFName);
 	fname.SetName(fname.GetName() + _("-Cleaned"));
 	m_sDstFName1=fname.GetFullPath();
+}
+
+void MainFrame::OnProfileChanged(wxCommandEvent& event)
+{
+	int iSel=m_cmbProfile->GetSelection();
+	if (iSel!=wxNOT_FOUND)
+		m_options.SetLastSelectedProfile(iSel);
 }

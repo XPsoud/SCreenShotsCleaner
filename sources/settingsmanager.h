@@ -23,6 +23,9 @@ class SettingsManager
 		const wxPoint& GetLastSavedPos() { return m_ptLastPos; }
 		const wxSize& GetLastSavedSize() { return m_szLastSize; }
 		void SetLastWindowRect(const wxPoint& pos, const wxSize& size);
+		// Selected profile at startup
+		void SetLastSelectedProfile(int profile);
+		int GetLastSelectedProfile();
 	protected:
 	private:
 		SettingsManager();
@@ -37,6 +40,7 @@ class SettingsManager
 		int m_iLangIndex;
 		wxPoint m_ptLastPos;
 		wxSize m_szLastSize;
+		int m_iLastProfile;
 };
 
 #endif // __SETTINGSMANAGER_H_INCLUDED__

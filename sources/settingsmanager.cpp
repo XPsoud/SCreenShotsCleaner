@@ -53,6 +53,8 @@ void SettingsManager::Initialize()
 	// Default position and size fo the main window
 	m_ptLastPos=wxDefaultPosition;
 	m_szLastSize=MAINFRAME_MIN_SIZE;
+	// Last Selected profile
+	m_iLastProfile=0;
 	// Other default settings
 
 	m_bInitialized=true;
@@ -132,6 +134,11 @@ bool SettingsManager::ReadSettings()
 			ProfilesManager& prfMngr=ProfilesManager::Get();
 			prfMngr.ReadFromXmlNode(node);
 		}
+		if (nodName==_T("SelectedProfile"))
+		{
+			node->GetNodeContent().ToLong(&lVal);
+			m_iLastProfile=lVal;
+		}
 		node = node->GetNext();
 	}
 
@@ -171,6 +178,10 @@ bool SettingsManager::SaveSettings()
 		node=node->GetNext();
 		prfMngr.SaveToXmlNode(node);
 	}
+	// Last selected profile
+	node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("SelectedProfile")));
+	node=node->GetNext();
+	node->AddChild(new wxXmlNode(wxXML_TEXT_NODE, _T(""), wxString::Format(_T("%d"), m_iLastProfile)));
 
 	wxXmlDocument doc;
 	doc.SetRoot(root);
@@ -272,4 +283,18 @@ void SettingsManager::SetLastWindowRect(const wxPoint& pos, const wxSize& size)
 		m_ptLastPos=pos;
 		m_szLastSize=size;
 	}
+}
+
+void SettingsManager::SetLastSelectedProfile(int profile)
+{
+	if (profile!=m_iLastProfile)
+	{
+		m_iLastProfile=profile;
+		m_bModified=true;
+	}
+}
+
+int SettingsManager::GetLastSelectedProfile()
+{
+	return m_iLastProfile;
 }
