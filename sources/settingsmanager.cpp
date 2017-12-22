@@ -291,7 +291,9 @@ void SettingsManager::SetLanguage(int lang)
 		}
 	} else {
 		m_iLangIndex=wxLANGUAGE_ENGLISH;
+#ifndef __WXGTK__
 		m_locale->Init(wxLANGUAGE_ENGLISH, wxLOCALE_LOAD_DEFAULT);
+#endif // ndef __WXGTK__
 	}
 }
 
