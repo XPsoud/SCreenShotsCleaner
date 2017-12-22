@@ -39,8 +39,8 @@ unsigned char app_exit_png[] = {
 
 wxBitmap wxGet_app_exit_png_Bitmap()
 {
-    wxMemoryInputStream _mem_i_s(app_exit_png,508);
-    return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
+	wxMemoryInputStream _mem_i_s(app_exit_png,508);
+	return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
 }
 unsigned char configure_png[] = {
 0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a,0x00,0x00,0x00,0x0d,0x49,0x48,0x44,0x52,
@@ -98,8 +98,8 @@ unsigned char configure_png[] = {
 
 wxBitmap wxGet_configure_png_Bitmap()
 {
-    wxMemoryInputStream _mem_i_s(configure_png,809);
-    return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
+	wxMemoryInputStream _mem_i_s(configure_png,809);
+	return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
 }
 unsigned char file_open_png[] = {
 0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a,0x00,0x00,0x00,0x0d,0x49,0x48,0x44,0x52,
@@ -150,8 +150,8 @@ unsigned char file_open_png[] = {
 
 wxBitmap wxGet_file_open_png_Bitmap()
 {
-    wxMemoryInputStream _mem_i_s(file_open_png,701);
-    return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
+	wxMemoryInputStream _mem_i_s(file_open_png,701);
+	return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
 }
 unsigned char help_about_png[] = {
 0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a,0x00,0x00,0x00,0x0d,0x49,0x48,0x44,0x52,
@@ -197,8 +197,8 @@ unsigned char help_about_png[] = {
 
 wxBitmap wxGet_help_about_png_Bitmap()
 {
-    wxMemoryInputStream _mem_i_s(help_about_png,611);
-    return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
+	wxMemoryInputStream _mem_i_s(help_about_png,611);
+	return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
 }
 unsigned char picture_save_png[] = {
 0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a,0x00,0x00,0x00,0x0d,0x49,0x48,0x44,0x52,
@@ -257,6 +257,6 @@ unsigned char picture_save_png[] = {
 
 wxBitmap wxGet_picture_save_png_Bitmap()
 {
-    wxMemoryInputStream _mem_i_s(picture_save_png,825);
-    return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
+	wxMemoryInputStream _mem_i_s(picture_save_png,825);
+	return wxBitmap(wxImage(_mem_i_s,wxBITMAP_TYPE_ANY,-1),-1);
 }

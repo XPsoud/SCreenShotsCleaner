@@ -10,7 +10,7 @@
 			<Target title="Release32">
 				<Option output="../bin/ScreenShotCleaner32" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin" />
-				<Option object_output="../build/Rel32-wx$(WX_VERSION)" />
+				<Option object_output="../build/wx$(WX_VERSION)-Release32" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectCompilerOptionsRelation="2" />
@@ -40,16 +40,19 @@
 					<Add library="libwinspool.a" />
 					<Add library="libole32.a" />
 					<Add library="libuuid.a" />
+					<Add library="liboleacc.a" />
+					<Add library="libshlwapi.a" />
+					<Add library="libversion.a" />
 					<Add directory="$(WX_DIR)/lib/gcc_lib32" />
 				</Linker>
 				<Environment>
-					<Variable name="WX_VERSION" value="30" />
+					<Variable name="WX_VERSION" value="31" />
 				</Environment>
 			</Target>
 			<Target title="Debug32">
 				<Option output="../bin/ScreenShotCleaner32D" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin" />
-				<Option object_output="../build/Deb32-wx$(WX_VERSION)" />
+				<Option object_output="../build/wx$(WX_VERSION)-Debug32" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectCompilerOptionsRelation="2" />
@@ -75,13 +78,13 @@
 					<Add directory="$(WX_DIR)/lib/gcc_dll32" />
 				</Linker>
 				<Environment>
-					<Variable name="WX_VERSION" value="30" />
+					<Variable name="WX_VERSION" value="31" />
 				</Environment>
 			</Target>
 			<Target title="Release64">
 				<Option output="../bin/ScreenShotCleaner64" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin" />
-				<Option object_output="../build/Rel64-wx$(WX_VERSION)" />
+				<Option object_output="../build/wx$(WX_VERSION)-Release64" />
 				<Option type="0" />
 				<Option compiler="gcc_tdm" />
 				<Option projectCompilerOptionsRelation="2" />
@@ -111,10 +114,13 @@
 					<Add library="libwinspool.a" />
 					<Add library="libole32.a" />
 					<Add library="libuuid.a" />
+					<Add library="liboleacc.a" />
+					<Add library="libshlwapi.a" />
+					<Add library="libversion.a" />
 					<Add directory="$(WX_DIR)/lib/gcc_lib64" />
 				</Linker>
 				<Environment>
-					<Variable name="WX_VERSION" value="30" />
+					<Variable name="WX_VERSION" value="31" />
 				</Environment>
 			</Target>
 			<Environment>
@@ -134,10 +140,10 @@
 			<Add option="-D__WXMSW__" />
 			<Add option="-DwxUSE_UNICODE" />
 		</Compiler>
-		<Unit filename="../sources/about.png.cpp">
+		<Unit filename="../sources/aboutlogo.cpp">
 			<Option virtualFolder="Graphx/" />
 		</Unit>
-		<Unit filename="../sources/about.png.h">
+		<Unit filename="../sources/aboutlogo.h">
 			<Option virtualFolder="Graphx/" />
 		</Unit>
 		<Unit filename="../sources/appversion.h">

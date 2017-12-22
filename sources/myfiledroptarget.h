@@ -4,7 +4,7 @@
 #include <wx/wx.h>
 #include <wx/dnd.h>
 
-extern const wxEventType wxEVT_FILE_DROPPED;
+wxDECLARE_EVENT(wxEVT_FILE_DROPPED, wxCommandEvent);
 
 class MyFileDropTarget : public wxFileDropTarget
 {

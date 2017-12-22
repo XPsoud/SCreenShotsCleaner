@@ -5,33 +5,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ScreenShotCleaner\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-14 15:02+0100\n"
-"PO-Revision-Date: 2014-02-14 15:11+0100\n"
+"POT-Creation-Date: 2017-12-22 13:07+0100\n"
+"PO-Revision-Date: 2017-12-22 13:07+0100\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\\..\\..\\\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
 "X-Poedit-KeywordsList: _;wxPLURAL\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: sources\n"
 
-#: sources/dlgabout.cpp:17
+#: sources/dlgabout.cpp:19
 #, c-format
 msgid "About %s"
 msgstr "À propos de %s"
 
-#: sources/dlgabout.cpp:46
+#: sources/dlgabout.cpp:48
 #, c-format
-msgid "Made with Code::Blocks && %s - %d bits"
-msgstr "Créé avec Code::Blocks && %s - %d bits"
-
-#: sources/dlgabout.cpp:55
-msgid "Close"
-msgstr "Fermer"
+msgid "Made with %s - %d bits"
+msgstr "Créé avec %s - %d bits"
 
 #: sources/dlgoptions.cpp:9
 msgid "Preferences"
@@ -61,154 +57,104 @@ msgstr "Annuler"
 msgid "Apply"
 msgstr "Appliquer"
 
-#: sources/main.cpp:34
-#: sources/mainframe.cpp:436
+#: sources/main.cpp:34 sources/mainframe.cpp:438
 msgid "Invalid source file name !"
 msgstr "Nom de fichier source invalide !"
 
-#: sources/main.cpp:34
-#: sources/main.cpp:39
-#: sources/mainframe.cpp:436
-#: sources/mainframe.cpp:442
-#: sources/mainframe.cpp:448
-#: sources/mainframe.cpp:457
-#: sources/mainframe.cpp:464
-#: sources/mainframe.cpp:470
-#: sources/myfiledroptarget.cpp:38
-#: sources/settingsmanager.cpp:253
+#: sources/main.cpp:34 sources/main.cpp:39 sources/mainframe.cpp:438
+#: sources/mainframe.cpp:444 sources/mainframe.cpp:450
+#: sources/mainframe.cpp:459 sources/mainframe.cpp:466
+#: sources/mainframe.cpp:472 sources/myfiledroptarget.cpp:38
+#: sources/settingsmanager.cpp:254
 msgid "Error"
 msgstr "Erreur"
 
-#: sources/main.cpp:39
-#: sources/mainframe.cpp:442
+#: sources/main.cpp:39 sources/mainframe.cpp:444
 #: sources/myfiledroptarget.cpp:38
 msgid "Unsupported image format !"
 msgstr "Format d'image non pris en charge !"
 
-#: sources/mainframe.cpp:67
-msgid "&Open\tCtrl-O"
-msgstr "&Ouvir\tCtrl-O"
-
-#: sources/mainframe.cpp:67
+#: sources/mainframe.cpp:69
 msgid "Select the screenshot file to clean"
 msgstr "Sélectionner le fichier de capture d'écran à nettoyer :"
 
-#: sources/mainframe.cpp:72
-msgid "&Save as\tCtrl-S"
-msgstr "En&registrer sous\tCtrl-S"
-
-#: sources/mainframe.cpp:72
+#: sources/mainframe.cpp:74
 msgid "Browse and enter the name of the file to create"
 msgstr "Parcourir et entrer le nom du fichier à créer"
 
-#: sources/mainframe.cpp:77
-msgid "S&ave"
-msgstr "&Enregistrer"
-
-#: sources/mainframe.cpp:77
-#: sources/mainframe.cpp:162
+#: sources/mainframe.cpp:79 sources/mainframe.cpp:164
 msgid "Save the cleaned image"
 msgstr "Enregistrer l'image nettoyée"
 
-#: sources/mainframe.cpp:83
-msgid "E&xit\tCtrl-X"
-msgstr "&Quitter\tCtrl-X"
-
-#: sources/mainframe.cpp:83
-msgid "Quit this application"
-msgstr "Quitter cette application"
-
-#: sources/mainframe.cpp:86
-msgid "&File"
-msgstr "&Fichier"
-
-#: sources/mainframe.cpp:89
-msgid "&Preferences"
-msgstr "&Préférences"
-
-#: sources/mainframe.cpp:89
+#: sources/mainframe.cpp:91
 msgid "Change the application settings"
 msgstr "Modifier les réglages de l'application"
 
-#: sources/mainframe.cpp:92
-msgid "&Edit"
-msgstr "&Édition"
-
-#: sources/mainframe.cpp:95
-msgid "&About\tF1"
-msgstr "&À propos de\tF1"
-
-#: sources/mainframe.cpp:95
+#: sources/mainframe.cpp:97
 msgid "Show informations about this application"
 msgstr "Afficher les informations concernant l'application"
 
-#: sources/mainframe.cpp:98
-msgid "&Help"
-msgstr "&Aide"
-
-#: sources/mainframe.cpp:108
+#: sources/mainframe.cpp:110
 msgid "Input:"
 msgstr "Entrée :"
 
-#: sources/mainframe.cpp:111
+#: sources/mainframe.cpp:113
 msgid "Get source image from file:"
 msgstr "Obtenir l'image source depuis un fichier :"
 
-#: sources/mainframe.cpp:119
-#: sources/mainframe.cpp:155
+#: sources/mainframe.cpp:121 sources/mainframe.cpp:157
 msgid "..."
 msgstr "..."
 
-#: sources/mainframe.cpp:123
+#: sources/mainframe.cpp:125
 msgid "Get source image from clipboard"
 msgstr "Obtenir l'image source depuis le presse-papier"
 
-#: sources/mainframe.cpp:128
+#: sources/mainframe.cpp:130
 msgid "Parameters:"
 msgstr "Paramètres :"
 
-#: sources/mainframe.cpp:131
+#: sources/mainframe.cpp:133
 msgid "Increase the image size by"
 msgstr "Augmenter la taille de l'image de"
 
-#: sources/mainframe.cpp:135
+#: sources/mainframe.cpp:137
 msgid "pixels per side"
 msgstr "pixels par côté"
 
-#: sources/mainframe.cpp:140
+#: sources/mainframe.cpp:142
 msgid "Processing profile:"
 msgstr "Profil de traitement :"
 
-#: sources/mainframe.cpp:147
+#: sources/mainframe.cpp:149
 msgid "Output:"
 msgstr "Sortie :"
 
-#: sources/mainframe.cpp:149
+#: sources/mainframe.cpp:151
 msgid "Overwrite the source file"
 msgstr "Écraser le fichier source"
 
-#: sources/mainframe.cpp:247
+#: sources/mainframe.cpp:249
 msgid "Select an image file"
 msgstr "Sélectionnez un fichier image"
 
-#: sources/mainframe.cpp:248
+#: sources/mainframe.cpp:250
 msgid "Images files|*.png;*.jpg;*.bmp|All files|*.*"
 msgstr "Fichiers images|*.png;*.jpg;*.bmp|Tous les fichiers|*.*"
 
-#: sources/mainframe.cpp:260
-#: sources/mainframe.cpp:506
+#: sources/mainframe.cpp:262 sources/mainframe.cpp:510
 msgid "-Cleaned"
 msgstr "-Nettoyé"
 
-#: sources/mainframe.cpp:266
+#: sources/mainframe.cpp:268
 msgid "Enter the name of the file to create"
 msgstr "Entrez le nom du fichier à créer"
 
-#: sources/mainframe.cpp:267
+#: sources/mainframe.cpp:269
 msgid "PNG Images files|*.png|JPEG Images files|*.jpg"
 msgstr "Fichiers images PNG|*.png|Fichiers images JPEG|*.jpg"
 
-#: sources/mainframe.cpp:299
+#: sources/mainframe.cpp:301
 msgid ""
 "The interface language has been changed.\n"
 "You must restart the application for this change to take effect."
@@ -216,41 +162,43 @@ msgstr ""
 "La langue de l'interface a été modifiée.\n"
 "Vous devez redémarrer l'application pour que ce changement prenne effet."
 
-#: sources/mainframe.cpp:299
+#: sources/mainframe.cpp:301
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
 
-#: sources/mainframe.cpp:315
+#: sources/mainframe.cpp:317
 msgid "No source file specified !"
 msgstr "Pas de fichier source spécifié !"
 
-#: sources/mainframe.cpp:322
+#: sources/mainframe.cpp:324
 msgid "No output file name specified !"
 msgstr "Nom de fichier en sortie non-spécifié !"
 
-#: sources/mainframe.cpp:330
+#: sources/mainframe.cpp:332
 msgid "Invalid output file name !"
 msgstr "Nom de fichier en sortie invalide !"
 
-#: sources/mainframe.cpp:337
+#: sources/mainframe.cpp:339
 msgid "Ready to save the cleaned image"
 msgstr "Prêt à enregistrer l'image nettoyée"
 
-#: sources/mainframe.cpp:448
+#: sources/mainframe.cpp:450
 msgid "Unable to load the image file !"
 msgstr "Impossible de charger le fichier image !"
 
-#: sources/mainframe.cpp:457
+#: sources/mainframe.cpp:459
 msgid "No image datas available from clipboard !"
 msgstr "Pas de données d'image disponibles depuis le presse-papier !"
 
-#: sources/mainframe.cpp:464
+#: sources/mainframe.cpp:466
 msgid "An error occurred while opening the clipboard !"
 msgstr "Une erreur est survenue lors de l'ouverture du presse-papier !"
 
-#: sources/mainframe.cpp:470
+#: sources/mainframe.cpp:472
 msgid "An error occurred while retreiving the datas from the clipboard !"
-msgstr "Une erreur est survenue lors de la récupération des données depuis le presse-papier !"
+msgstr ""
+"Une erreur est survenue lors de la récupération des données depuis le presse-"
+"papier !"
 
 #: sources/profile.cpp:151
 msgid "Profile doesn't contain any point !"
@@ -276,16 +224,10 @@ msgstr "Thème par défaut de Windows XP"
 msgid "Profile for no pixels treatment"
 msgstr "Profil sans aucun traitement de pixels"
 
-#: sources/settingsmanager.cpp:253
+#: sources/settingsmanager.cpp:254
 msgid "The selected language isn't supported yet !"
 msgstr "La langue sélectionnée n'est pas encore supportée !"
 
-#: sources/appversion.h:14
+#: sources/appversion.h:13
 msgid "Utility to cleanup screenshots images"
 msgstr "Utilitaire pour nettoyage de captures d'écran"
-
-#~ msgid "Open"
-#~ msgstr "Ouvrir"
-#~ msgid "Exit"
-#~ msgstr "Quitter"
-

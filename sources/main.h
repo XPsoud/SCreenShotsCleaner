@@ -5,10 +5,10 @@
 
 class ScreenShotCleanerApp : public wxApp
 {
-    public:
-        bool OnInit();
-        int OnExit();
-    private:
+	public:
+		bool OnInit();
+		int OnExit();
+	private:
 };
 
 DECLARE_APP(ScreenShotCleanerApp)

@@ -5,9 +5,9 @@
 
 class DlgAbout : public wxDialog
 {
-    public:
-        DlgAbout(wxWindow *parent=NULL);
-        virtual ~DlgAbout();
+	public:
+		DlgAbout(wxWindow *parent=NULL);
+		virtual ~DlgAbout();
 };
 
 #endif // __DLGABOUT_H_INCLUDED__

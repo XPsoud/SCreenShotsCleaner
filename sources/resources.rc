@@ -25,28 +25,28 @@ wxMANIFEST_ID 24 "wx/msw/wx.manifest"
 #endif
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION VERSION_MAJOR,VERSION_MINOR,VERSION_REV,VERSION_BUILD
+ FILEVERSION VERSION_MAJOR,VERSION_MINOR,VERSION_REV,0
  FILEFLAGSMASK 0x3fL
  FILEFLAGS 0x0L
  FILEOS 0x40004L
  FILETYPE 0x1L
  FILESUBTYPE 0x0L
 BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "040c04b0"
-        BEGIN
-            VALUE "CompanyName", PRODUCTNAME
-            VALUE "FileDescription", DESCRIPTION
-            VALUE "FileVersion", VERSION_STRING
-            VALUE "InternalName", PRODUCTNAME
-            VALUE "LegalCopyright", COPYRIGHT
-            VALUE "ProductName", PRODUCTNAME
+	BLOCK "StringFileInfo"
+	BEGIN
+		BLOCK "040c04b0"
+		BEGIN
+			VALUE "CompanyName", PRODUCTNAME
+			VALUE "FileDescription", DESCRIPTION
+			VALUE "FileVersion", VERSION_STRING
+			VALUE "InternalName", PRODUCTNAME
+			VALUE "LegalCopyright", COPYRIGHT
+			VALUE "ProductName", PRODUCTNAME
 			VALUE "ProductVersion", xstr(VERSION_MAJOR.VERSION_MINOR)
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x40c, 1200
-    END
+		END
+	END
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE "Translation", 0x40c, 1200
+	END
 END
