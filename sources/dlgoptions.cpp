@@ -52,7 +52,7 @@ void DlgOptions::CreateControls()
                             long l;
                             langs[i].Left(5).ToLong(&l);
                             langs[i].Remove(0,5);
-                            int id=m_cmbLang->Append(langs[i], (void*)((unsigned long)l));
+                            int id=m_cmbLang->Append(langs[i], (void*)wxUIntPtr(l));
                             if (iCurLang==l) m_cmbLang->Select(id);
                         }
                     box->Add(m_cmbLang, 1, wxLEFT|wxRIGHT|wxBOTTOM|wxALIGN_CENTER_VERTICAL, 5);
