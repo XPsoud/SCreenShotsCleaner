@@ -39,15 +39,15 @@ DlgAbout::DlgAbout(wxWindow *parent) : wxDialog(parent, -1, _T("..."))
 					label->SetFont(bFnt);
 				vszr1->Add(label, 0, wxALL|wxEXPAND, iSpacer);
 
-				label=new wxStaticText(this, wxID_STATIC, wDESCRIPTION, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER|wxST_NO_AUTORESIZE);
-				vszr1->Add(label, 0, wxLEFT|wxRIGHT|wxEXPAND, iSpacer);
+				label=new wxStaticText(this, wxID_STATIC, wDESCRIPTION);
+				vszr1->Add(label, 0, wxLEFT|wxRIGHT|wxALIGN_CENTER, iSpacer);
 
-				label=new wxStaticText(this, wxID_STATIC, _T(COPYRIGHT), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER|wxST_NO_AUTORESIZE);
-				vszr1->Add(label, 0, wxALL|wxEXPAND, iSpacer);
+				label=new wxStaticText(this, wxID_STATIC, _T(COPYRIGHT));
+				vszr1->Add(label, 0, wxALL|wxALIGN_CENTER, iSpacer);
 
 				sMsg.Printf(_("Made with %s - %d bits"), wxVERSION_STRING, (int)(8*sizeof(void*)));
-				label=new wxStaticText(this, wxID_STATIC, sMsg, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER|wxST_NO_AUTORESIZE);
-				vszr1->Add(label, 0, wxALL|wxEXPAND, iSpacer);
+				label=new wxStaticText(this, wxID_STATIC, sMsg);
+				vszr1->Add(label, 0, wxALL|wxALIGN_CENTER, iSpacer);
 			hszr1->Add(vszr1, 0, wxALL|wxEXPAND, iSpacer);
 		vszr0->Add(hszr1, 0, wxALL|wxEXPAND, 0);
 

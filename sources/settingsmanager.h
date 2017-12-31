@@ -11,10 +11,10 @@ class SettingsManager
 	public:
 		static SettingsManager& Get();
 		bool ReadSettings();
-			bool SaveSettings();
-			// Accessors
-			virtual bool IsModified();
-			wxString GetAppPath() { return m_sAppPath; }
+		bool SaveSettings();
+		// Accessors
+		virtual bool IsModified();
+		wxString GetAppPath() { return m_sAppPath; }
 		// Language
 		void SetLanguage(int lang=wxLANGUAGE_DEFAULT);
 		int GetCurrentLanguage() { return m_iLangIndex; }

@@ -48,7 +48,7 @@ void SettingsManager::Initialize()
 	m_sAppPath = wxPathOnly(wxStandardPaths::Get().GetExecutablePath());
 	if (!m_sAppPath.EndsWith(wxFileName::GetPathSeparator()))
 		m_sAppPath.Append(wxFileName::GetPathSeparator());
-#ifdef __WXMAC__
+#ifndef __WXMSW__
     m_sLngPath=wxStandardPaths::Get().GetResourcesDir();
 	if (!m_sLngPath.EndsWith(wxFileName::GetPathSeparator()))
 		m_sLngPath.Append(wxFileName::GetPathSeparator());
@@ -58,7 +58,17 @@ void SettingsManager::Initialize()
 #else
     m_sLngPath=m_sAppPath;
 	m_sSettingsPath=m_sAppPath;
-#endif // __WXMAC__
+#endif // ndef __WXMSW__
+
+#ifdef __WXGTK__
+	if (!wxDirExists(m_sLngPath)) // Not a real installation ?
+	{
+		m_sLngPath=m_sAppPath;
+		m_sSettingsPath=m_sAppPath;
+	}
+	wxPrintf(_T("Languages path = %s\n"), m_sLngPath);
+	wxPrintf(_T("Settings path  = %s\n"), m_sSettingsPath);
+#endif // __WXGTK__
 	m_sLngPath.Append(_T("langs"));
 	// Set default language
 	SetLanguage();
