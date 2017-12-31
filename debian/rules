@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+DH_VERBOSE = 1
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	$(MAKE) locales
+	install -D -m 0755 $$(pwd)/bin/ScreenShotCleaner $$(pwd)/debian/screenshotscleaner/usr/bin/ScreenShotCleaner
+	install -D -m 0755 $$(pwd)/debian/screenshotscleaner.desktop $$(pwd)/debian/screenshotscleaner/usr/share/applications/screenshotscleaner.desktop
+	install -D $$(pwd)/debian/screenshotscleaner.png $$(pwd)/debian/screenshotscleaner/usr/share/ScreenShotsCleaner/icons/screenshotscleaner.png
+	install -D $$(pwd)/bin/langs/fr/ScreenShotCleaner.mo $$(pwd)/debian/screenshotscleaner/usr/share/ScreenShotCleaner/langs/fr/ScreenShotCleaner.mo
+	install -D $$(pwd)/bin/langs/fr/wxStd.mo $$(pwd)/debian/screenshotscleaner/usr/share/ScreenShotCleaner/langs/fr/wxStd.mo

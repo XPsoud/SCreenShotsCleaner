@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=ScreenShotCleaner
+GenericName=Screenshots images cleaner
+Exec=ScreenShotCleaner
+Icon=/usr/share/ScreenShotsCleaner/icons/screenshotscleaner.png
+Terminal=false
+X-MultipleArgs=false
+Categories=Graphics;2DGraphics;RasterGraphics;GTK;
+StartupNotify=false
+Comment=Screenshots images files cleaner
+Comment[fr]=Nettoyeur de captures d'écran
