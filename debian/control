@@ -1,5 +1,5 @@
 Source: screenshotscleaner
-Section: unknown
+Section: graphics
 Priority: optional
 Maintainer: Xaviou <x.psoud@gmail.com>
 Build-Depends: debhelper (>= 7.4.11~)
