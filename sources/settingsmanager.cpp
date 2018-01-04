@@ -66,8 +66,6 @@ void SettingsManager::Initialize()
 		m_sLngPath=m_sAppPath;
 		m_sSettingsPath=m_sAppPath;
 	}
-	wxPrintf(_T("Languages path = %s\n"), m_sLngPath);
-	wxPrintf(_T("Settings path  = %s\n"), m_sSettingsPath);
 #endif // __WXGTK__
 	m_sLngPath.Append(_T("langs"));
 	// Set default language
