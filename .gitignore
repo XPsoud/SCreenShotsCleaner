@@ -11,6 +11,9 @@
 *.depend
 *.cdTemp
 
+# VS Code specific files
+.vscode
+
 # Intermediate and final folders
 build/
 bin/
