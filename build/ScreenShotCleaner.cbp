@@ -86,7 +86,7 @@
 				<Option working_dir="../bin" />
 				<Option object_output="../build/wx$(WX_VERSION)-Release64" />
 				<Option type="0" />
-				<Option compiler="gcc_tdm" />
+				<Option compiler="gcc64" />
 				<Option projectCompilerOptionsRelation="2" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
